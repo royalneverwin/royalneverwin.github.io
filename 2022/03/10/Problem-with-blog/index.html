@@ -20,28 +20,35 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Legolas">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="写在前面这里记录了我建立blog以来遇到的困难和解决方法。  创建personal blog时deploy到github上出错problem 1:创建repo时，头脑一热把名字写成了Legolas，以为没什么问题 deploy之后：404 not found 遂重新把repo改名字成royalneverwin.github.io，终于可以显示网站了（nice problem 2:等到我换上neXt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客建设的坑坑洼洼">
+<meta property="og:url" content="http://example.com/2022/03/10/Problem-with-blog/index.html">
 <meta property="og:site_name" content="Legolas">
+<meta property="og:description" content="写在前面这里记录了我建立blog以来遇到的困难和解决方法。  创建personal blog时deploy到github上出错problem 1:创建repo时，头脑一热把名字写成了Legolas，以为没什么问题 deploy之后：404 not found 遂重新把repo改名字成royalneverwin.github.io，终于可以显示网站了（nice problem 2:等到我换上neXt">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/.com//20220310blog.png">
+<meta property="article:published_time" content="2022-03-10T14:32:05.000Z">
+<meta property="article:modified_time" content="2022-03-10T15:26:29.319Z">
 <meta property="article:author" content="Wang Xinhao">
+<meta property="article:tag" content="hexo, github, blog">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/.com//20220310blog.png">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/03/10/Problem-with-blog/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Legolas</title>
+  <title>博客建设的坑坑洼洼 | Legolas</title>
   
 
 
@@ -139,80 +146,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/Markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/10/Markdown/" class="post-title-link" itemprop="url">Markdown高级技巧</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-03-10 23:11:16 / Modified: 23:15:30" itemprop="dateCreated datePublished" datetime="2022-03-10T23:11:16+08:00">2022-03-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里记录我学习到的各种 <strong>markdown</strong> 小tricks。</p>
-<hr>
-<h3 id="如何打出类似键盘按键的符号"><a href="#如何打出类似键盘按键的符号" class="headerlink" title="如何打出类似键盘按键的符号"></a>如何打出类似键盘按键的符号</h3><p>虽然这是markdown的一个高级技巧，但我更多的是用它打出键盘按键符号23333，属于是大炮打蚊子。</p>
-<p>我们要知道的是，markdown支持html元素。</p>
-<p>目前支持的html元素有：<code>&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt; &lt;br&gt;</code>等 </p>
-<p>但在这里，我们需要的是：<code>&lt;kbd&gt;</code>！！！</p>
-<p>方法如下吗，举个例子就行：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用 &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Alt&lt;/kbd&gt;+&lt;kbd&gt;Del&lt;/kbd&gt; 重启电脑</span><br></pre></td></tr></table></figure>
-
-<p>最终结果就是：</p>
-<p>使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑</p>
-<p>是不是很神奇！</p>
-<hr>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -228,10 +165,9 @@
       <meta itemprop="name" content="Legolas">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/10/Problem-with-blog/" class="post-title-link" itemprop="url">博客建设的坑坑洼洼</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          博客建设的坑坑洼洼
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -255,7 +191,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里记录了我建立blog以来遇到的困难和解决方法。</p>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里记录了我建立blog以来遇到的困难和解决方法。</p>
 <hr>
 <h3 id="创建personal-blog时deploy到github上出错"><a href="#创建personal-blog时deploy到github上出错" class="headerlink" title="创建personal blog时deploy到github上出错"></a>创建personal blog时deploy到github上出错</h3><h4 id="problem-1"><a href="#problem-1" class="headerlink" title="problem 1:"></a>problem 1:</h4><p>创建repo时，头脑一热把名字写成了Legolas，以为没什么问题</p>
 <p>deploy之后：404 not found</p>
@@ -281,163 +217,36 @@
 <p>彳亍。</p>
 <hr>
 <h3 id="写好的MarkDown的标题中‘-’无法被识别"><a href="#写好的MarkDown的标题中‘-’无法被识别" class="headerlink" title="写好的MarkDown的标题中‘###’无法被识别"></a>写好的MarkDown的标题中‘###’无法被识别</h3><h3 id="hexo博客中插入图片失败"><a href="#hexo博客中插入图片失败" class="headerlink" title="hexo博客中插入图片失败"></a>hexo博客中插入图片失败</h3>
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/hexo-github-blog/" rel="tag"># hexo, github, blog</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/pyTroch/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/10/pyTroch/" class="post-title-link" itemprop="url">pyTorch路漫漫其修远兮</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-03-10 21:26:25 / Modified: 23:08:27" itemprop="dateCreated datePublished" datetime="2022-03-10T21:26:25+08:00">2022-03-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里我记录了学习<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/search.html?q=mean&check_keywords=yes&area=default">pyTorch</a>过程中查阅官方文档学习到的知识，记录在此作为备案。</p>
-<hr>
-<h3 id="torch-utils-data-dataLoader-Parameters"><a href="#torch-utils-data-dataLoader-Parameters" class="headerlink" title="torch.utils.data.dataLoader( ) Parameters:"></a>torch.utils.data.dataLoader( ) Parameters:</h3><ul>
-<li><code>dataset</code>: <em>Dataset</em>, dataset from which to load the data.</li>
-<li><code>batch_size</code>: <em>int,optional</em>, how many samples per batch to load (default: <code>1</code>).</li>
-<li><code>shuffle</code>: <em>bool,optional</em>, set to <code>True</code> to have the data reshuffled at every epoch (default: <code>False</code>).</li>
-<li><code>num_workers</code>:  <em>int,optional</em>, how many subprocesses to use for data loading. <code>0</code> means that the data will be loaded in the main process. (default: <code>0</code>).</li>
-<li><code>pin_memory</code>: <em>bool,optional</em>, If <code>True</code>, the data loader will copy Tensors into CUDA pinned memory before returning them. If your data elements are a custom type, or your <code>collate_fn</code> returns a batch that is a custom type, see the example below.</li>
-<li><code>drop_last</code>: <em>bool,optional</em>, set to <code>True</code> to drop the last incomplete batch, if the dataset size is not divisible by the batch size. If <code>False</code> and the size of dataset is not divisible by the batch size, then the last batch will be smaller. (default: <code>False</code>).</li>
-</ul>
-<hr>
-<h3 id="torch-nn-MSELoss-parameters"><a href="#torch-nn-MSELoss-parameters" class="headerlink" title="torch.nn.MSELoss( ) parameters:"></a>torch.nn.MSELoss( ) parameters:</h3><p>(two parameters before it was deprecated)</p>
-<ul>
-<li><code>reduction</code>: <em>string,optional</em>: Specifies the reduction to apply to the output: <code>&#39;none&#39;</code> | <code>&#39;mean&#39;</code> | <code>&#39;sum&#39;</code>. <code>&#39;none&#39;</code>: no reduction will be applied, <code>&#39;mean&#39;</code>: the sum of the output will be divided by the number of elements in the output, <code>&#39;sum&#39;</code>: the output will be summed. Note: <code>size_average</code> and <code>reduce</code> are in the process of being deprecated, and in the meantime, specifying either of those two args will override <code>reduction</code>. Default: <code>&#39;mean&#39;</code>.</li>
-</ul>
-<hr>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/10/pyTroch/" rel="prev" title="pyTorch路漫漫其修远兮">
+      <i class="fa fa-chevron-left"></i> pyTorch路漫漫其修远兮
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/10/Markdown/" rel="next" title="Markdown高级技巧">
+      Markdown高级技巧 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/Introduction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/10/Introduction/" class="post-title-link" itemprop="url">Introduction</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-03-10 12:43:34 / Modified: 21:26:55" itemprop="dateCreated datePublished" datetime="2022-03-10T12:43:34+08:00">2022-03-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这是<strong>Xinhao Wang</strong>的个人blog，我会在这里分享平时学习中遇到的问题和解决方法，以及学到的知识笔记。</p>
-<h3 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h3><ul>
-<li><code>name</code>: 王新昊</li>
-<li><code>gender</code>: ♂</li>
-<li><code>email</code>: <a href="mailto:&#119;&#97;&#110;&#103;&#x78;&#x69;&#x6e;&#x68;&#x61;&#111;&#x40;&#x70;&#x6b;&#117;&#x2e;&#x65;&#x64;&#x75;&#x2e;&#99;&#110;">&#119;&#97;&#110;&#103;&#x78;&#x69;&#x6e;&#x68;&#x61;&#111;&#x40;&#x70;&#x6b;&#117;&#x2e;&#x65;&#x64;&#x75;&#x2e;&#99;&#110;</a>     <a href="mailto:&#56;&#x37;&#52;&#x39;&#50;&#x31;&#53;&#52;&#57;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;">&#56;&#x37;&#52;&#x39;&#50;&#x31;&#53;&#52;&#57;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;</a></li>
-<li><code>Undergraduate</code>: 北京大学</li>
-</ul>
-<h3 id="一些期望"><a href="#一些期望" class="headerlink" title="一些期望"></a>一些期望</h3><p>人与人接壤，能述说的仅是片面辰光，一两桩人情世故而已。</p>
-<p>能说的，都不是最深的孤独。</p>
-<p>——简媜</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -490,6 +299,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BApersonal-blog%E6%97%B6deploy%E5%88%B0github%E4%B8%8A%E5%87%BA%E9%94%99"><span class="nav-number">2.</span> <span class="nav-text">创建personal blog时deploy到github上出错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#problem-1"><span class="nav-number">2.1.</span> <span class="nav-text">problem 1:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#problem-2"><span class="nav-number">2.2.</span> <span class="nav-text">problem 2:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0post%E6%97%B6%E6%8A%A5%E9%94%99"><span class="nav-number">3.</span> <span class="nav-text">上传post时报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%A5%BD%E7%9A%84MarkDown%E7%9A%84%E6%A0%87%E9%A2%98%E4%B8%AD%E2%80%98-%E2%80%99%E6%97%A0%E6%B3%95%E8%A2%AB%E8%AF%86%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">写好的MarkDown的标题中‘###’无法被识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E5%A4%B1%E8%B4%A5"><span class="nav-number">5.</span> <span class="nav-text">hexo博客中插入图片失败</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
