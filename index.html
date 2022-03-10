@@ -21,11 +21,11 @@
   </script>
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Legolas">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Legolas">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Wang Xinhao">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/">
@@ -41,7 +41,7 @@
   };
 </script>
 
-  <title>Hexo</title>
+  <title>Legolas</title>
   
 
 
@@ -92,7 +92,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Hexo</h1>
+      <h1 class="site-title">Legolas</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -145,16 +145,144 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/Introduction/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/torch-nn-MSELoss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Wang Xinhao">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/10/torch-nn-MSELoss/" class="post-title-link" itemprop="url">torch.nn.MSELoss</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-03-10 22:26:26 / Modified: 22:30:18" itemprop="dateCreated datePublished" datetime="2022-03-10T22:26:26+08:00">2022-03-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="torch-nn-MSELoss-parameters"><a href="#torch-nn-MSELoss-parameters" class="headerlink" title="torch.nn.MSELoss( ) parameters:"></a>torch.nn.MSELoss( ) parameters:</h3><p>(two parameters before it was deprecated)</p>
+<ul>
+<li><code>reduction</code>: <em>string,optional</em>: Specifies the reduction to apply to the output: <code>&#39;none&#39;</code> | <code>&#39;mean&#39;</code> | <code>&#39;sum&#39;</code>. <code>&#39;none&#39;</code>: no reduction will be applied, <code>&#39;mean&#39;</code>: the sum of the output will be divided by the number of elements in the output, <code>&#39;sum&#39;</code>: the output will be summed. Note: <code>size_average</code> and <code>reduce</code> are in the process of being deprecated, and in the meantime, specifying either of those two args will override <code>reduction</code>. Default: <code>&#39;mean&#39;</code>.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/torch-utils-data-dataLoader/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/10/torch-utils-data-dataLoader/" class="post-title-link" itemprop="url">torch.utils.data.dataLoader</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-03-10 21:26:25 / Modified: 22:30:14" itemprop="dateCreated datePublished" datetime="2022-03-10T21:26:25+08:00">2022-03-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="torch-utils-data-dataLoader-Parameters"><a href="#torch-utils-data-dataLoader-Parameters" class="headerlink" title="torch.utils.data.dataLoader( ) Parameters:"></a>torch.utils.data.dataLoader( ) Parameters:</h3><ul>
+<li><code>dataset</code>: <em>Dataset</em>, dataset from which to load the data.</li>
+<li><code>batch_size</code>: <em>int,optional</em>, how many samples per batch to load (default: <code>1</code>).</li>
+<li><code>shuffle</code>: <em>bool,optional</em>, set to <code>True</code> to have the data reshuffled at every epoch (default: <code>False</code>).</li>
+<li><code>num_workers</code>:  <em>int,optional</em>, how many subprocesses to use for data loading. <code>0</code> means that the data will be loaded in the main process. (default: <code>0</code>).</li>
+<li><code>pin_memory</code>: <em>bool,optional</em>, If <code>True</code>, the data loader will copy Tensors into CUDA pinned memory before returning them. If your data elements are a custom type, or your <code>collate_fn</code> returns a batch that is a custom type, see the example below.</li>
+<li><code>drop_last</code>: <em>bool,optional</em>, set to <code>True</code> to drop the last incomplete batch, if the dataset size is not divisible by the batch size. If <code>False</code> and the size of dataset is not divisible by the batch size, then the last batch will be smaller. (default: <code>False</code>).</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/Introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -188,7 +316,7 @@
 <h3 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h3><ul>
 <li><code>name</code>: 王新昊</li>
 <li><code>gender</code>: ♂</li>
-<li><code>email</code>: <a href="mailto:&#x77;&#97;&#x6e;&#x67;&#x78;&#105;&#x6e;&#104;&#x61;&#111;&#x40;&#112;&#107;&#x75;&#46;&#101;&#x64;&#x75;&#46;&#x63;&#x6e;">&#x77;&#97;&#x6e;&#x67;&#x78;&#105;&#x6e;&#104;&#x61;&#111;&#x40;&#112;&#107;&#x75;&#46;&#101;&#x64;&#x75;&#46;&#x63;&#x6e;</a>     <a href="mailto:&#56;&#55;&#52;&#x39;&#x32;&#x31;&#53;&#52;&#57;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#56;&#55;&#52;&#x39;&#x32;&#x31;&#53;&#52;&#57;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a></li>
+<li><code>email</code>: <a href="mailto:&#119;&#97;&#110;&#103;&#x78;&#x69;&#x6e;&#x68;&#x61;&#111;&#x40;&#x70;&#x6b;&#117;&#x2e;&#x65;&#x64;&#x75;&#x2e;&#99;&#110;">&#119;&#97;&#110;&#103;&#x78;&#x69;&#x6e;&#x68;&#x61;&#111;&#x40;&#x70;&#x6b;&#117;&#x2e;&#x65;&#x64;&#x75;&#x2e;&#99;&#110;</a>     <a href="mailto:&#56;&#x37;&#52;&#x39;&#50;&#x31;&#53;&#52;&#57;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;">&#56;&#x37;&#52;&#x39;&#50;&#x31;&#53;&#52;&#57;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;</a></li>
 <li><code>Undergraduate</code>: 北京大学</li>
 </ul>
 <h3 id="一些期望"><a href="#一些期望" class="headerlink" title="一些期望"></a>一些期望</h3><p>人与人接壤，能述说的仅是片面辰光，一两桩人情世故而已。</p>
@@ -267,7 +395,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+  <p class="site-author-name" itemprop="name">Wang Xinhao</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -275,12 +403,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -311,7 +439,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Wang Xinhao</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
