@@ -28,7 +28,7 @@
 <meta property="og:description" content="写在前面这里我记录了学习pyTorch过程中查阅官方文档学习到的知识，记录在此作为备案。      torch.utils.data.dataLoader( ) Parameters: dataset: Dataset, dataset from which to load the data. batch_size: int,optional, how many samples per batc">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-10T13:26:25.000Z">
-<meta property="article:modified_time" content="2022-03-10T16:26:00.005Z">
+<meta property="article:modified_time" content="2022-03-11T15:54:28.112Z">
 <meta property="article:author" content="Wang Xinhao">
 <meta property="article:tag" content="pyTorch">
 <meta name="twitter:card" content="summary">
@@ -181,7 +181,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-11 00:26:00" itemprop="dateModified" datetime="2022-03-11T00:26:00+08:00">2022-03-11</time>
+                <time title="Modified: 2022-03-11 23:54:28" itemprop="dateModified" datetime="2022-03-11T23:54:28+08:00">2022-03-11</time>
               </span>
 
           
@@ -219,6 +219,36 @@
 <ul>
 <li><code>reduction</code>: <em>string,optional</em>: Specifies the reduction to apply to the output: <code>&#39;none&#39;</code> | <code>&#39;mean&#39;</code> | <code>&#39;sum&#39;</code>. <code>&#39;none&#39;</code>: no reduction will be applied, <code>&#39;mean&#39;</code>: the sum of the output will be divided by the number of elements in the output, <code>&#39;sum&#39;</code>: the output will be summed. Note: <code>size_average</code> and <code>reduce</code> are in the process of being deprecated, and in the meantime, specifying either of those two args will override <code>reduction</code>. Default: <code>&#39;mean&#39;</code>.</li>
 </ul>
+<br>
+
+<br>
+
+<hr>
+<h3 id="optimizer-getattr-torch-optim-config-‘optimizer’-model-parameters-config-‘optim-hparas’"><a href="#optimizer-getattr-torch-optim-config-‘optimizer’-model-parameters-config-‘optim-hparas’" class="headerlink" title="optimizer = getattr(torch.optim, config[‘optimizer’])( model.parameters(), **config[‘optim_hparas’])"></a>optimizer = getattr(torch.optim, config[‘optimizer’])( model.parameters(), **config[‘optim_hparas’])</h3><p><strong>getattr(object, name, [, default])</strong> method returns the value of the named attribute of an object. If not found, it returns the default value provided to the function.</p>
+<p>​    <br></p>
+<p><strong>torch.optim</strong> is a package implementing various optimization algorithms. Including SGD, Adam, etc.</p>
+<p><strong>torch.optim.Optimizer</strong> parameters：</p>
+<ul>
+<li><code>params</code>：<em>iterable</em>, an iterable of torch.Tensor’s or dict’s. Specifies what Tensors should be optimized.</li>
+<li><code>defaults</code>：<em>dict</em>, a dict containing default values of optimization options (used when a parameter group doesn’t specify them).</li>
+</ul>
+<br>
+
+<p><strong>**config</strong>：（这里就用中文方便理解了）</p>
+<p>*args 和 **kwargs 主要用于函数定义。</p>
+<p>你可以将不定数量的参数传递给一个函数。不定的意思是：预先并不知道, 函数使用者会传递多少个参数给你, 所以在这个场景下使用这两个关键字。其实并不是必须写成 *args 和 **kwargs。  *(星号) 才是必须的. 你也可以写成 *ar  和 **k 。而写成 *args 和 **kwargs 只是一个通俗的命名约定。</p>
+<p>python函数传递参数的方式有两种：位置参数（positional argument）, 关键词参数（keyword argument）<br>*args 与 **kwargs 的区别，两者都是 python 中的可变参数：</p>
+<p>*args 表示任何多个无名参数，它本质是一个 tuple<br>**kwargs 表示关键字参数，它本质上是一个 dict<br>如果同时使用 *args 和 **kwargs 时，必须 *args 参数列要在 **kwargs 之前。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(<span class="string">&#x27;args=&#x27;</span>, args)</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(<span class="string">&#x27;kwargs=&#x27;</span>, kwargs)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, A=<span class="string">&#x27;a&#x27;</span>, B=<span class="string">&#x27;b&#x27;</span>, C=<span class="string">&#x27;c&#x27;</span>, D=<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line">args= (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">kwargs= &#123;<span class="string">&#x27;A&#x27;</span>: <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;B&#x27;</span>: <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;C&#x27;</span>: <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;D&#x27;</span>: <span class="string">&#x27;d&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 *args</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">name, *args</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(<span class="string">&#x27;你好:&#x27;</span>, name)</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> i <span class="keyword">in</span> args:</span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&quot;你的宠物有:&quot;</span>, i)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(<span class="string">&quot;Geek&quot;</span>, <span class="string">&quot;dog&quot;</span>, <span class="string">&quot;cat&quot;</span>)</span><br><span class="line">你好: Geek</span><br><span class="line">你的宠物有: dog</span><br><span class="line">你的宠物有: cat</span><br></pre></td></tr></table></figure>
+
+<p>使用 **kwargs</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">**kwargs</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&quot;&#123;0&#125; 喜欢 &#123;1&#125;&quot;</span>.<span class="built_in">format</span>(key, value))</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(Geek=<span class="string">&quot;cat&quot;</span>, cat=<span class="string">&quot;box&quot;</span>)</span><br><span class="line">Geek 喜欢 cat</span><br><span class="line">cat 喜欢 box</span><br></pre></td></tr></table></figure>
+
+
+
 
     </div>
 
@@ -302,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torch-utils-data-dataLoader-Parameters"><span class="nav-number">2.</span> <span class="nav-text">torch.utils.data.dataLoader( ) Parameters:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torch-nn-MSELoss-parameters"><span class="nav-number">3.</span> <span class="nav-text">torch.nn.MSELoss( ) parameters:</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torch-utils-data-dataLoader-Parameters"><span class="nav-number">2.</span> <span class="nav-text">torch.utils.data.dataLoader( ) Parameters:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torch-nn-MSELoss-parameters"><span class="nav-number">3.</span> <span class="nav-text">torch.nn.MSELoss( ) parameters:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#optimizer-getattr-torch-optim-config-%E2%80%98optimizer%E2%80%99-model-parameters-config-%E2%80%98optim-hparas%E2%80%99"><span class="nav-number">4.</span> <span class="nav-text">optimizer &#x3D; getattr(torch.optim, config[‘optimizer’])( model.parameters(), **config[‘optim_hparas’])</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
