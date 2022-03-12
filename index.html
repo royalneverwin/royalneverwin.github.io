@@ -452,7 +452,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-11 23:54:28" itemprop="dateModified" datetime="2022-03-11T23:54:28+08:00">2022-03-11</time>
+                <time title="Modified: 2022-03-12 21:50:46" itemprop="dateModified" datetime="2022-03-12T21:50:46+08:00">2022-03-12</time>
               </span>
 
           
@@ -518,8 +518,17 @@
 <p>使用 **kwargs</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">**kwargs</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&quot;&#123;0&#125; 喜欢 &#123;1&#125;&quot;</span>.<span class="built_in">format</span>(key, value))</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(Geek=<span class="string">&quot;cat&quot;</span>, cat=<span class="string">&quot;box&quot;</span>)</span><br><span class="line">Geek 喜欢 cat</span><br><span class="line">cat 喜欢 box</span><br></pre></td></tr></table></figure>
 
+<br>
 
+<br>
 
+<hr>
+<h3 id="mse-loss-detach-cpu-item"><a href="#mse-loss-detach-cpu-item" class="headerlink" title="mse_loss().detach().cpu().item()"></a>mse_loss().detach().cpu().item()</h3><ul>
+<li><code>item()</code>：将张量的值转换为标准的 Python 数值，只有当张量仅含一个元素时才能使用它</li>
+<li><code>detach()</code>：返回一个与当前 graph 分离的、不再需要梯度的新张量</li>
+<li><code>cpu()</code>：将张量拷贝到 CPU 上</li>
+<li><code>mse_loss()</code> = MSELoss( )</li>
+</ul>
 
       
     </div>
