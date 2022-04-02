@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/03/11/Wireshark/image-20220311190537752.png">
 <meta property="article:published_time" content="2022-03-11T11:02:55.000Z">
-<meta property="article:modified_time" content="2022-03-11T11:08:13.981Z">
+<meta property="article:modified_time" content="2022-04-02T14:52:21.911Z">
 <meta property="article:author" content="Wang Xinhao">
 <meta property="article:tag" content="Wireshark">
 <meta name="twitter:card" content="summary">
@@ -175,10 +175,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-03-11 19:02:55 / Modified: 19:08:13" itemprop="dateCreated datePublished" datetime="2022-03-11T19:02:55+08:00">2022-03-11</time>
+              <time title="Created: 2022-03-11 19:02:55" itemprop="dateCreated datePublished" datetime="2022-03-11T19:02:55+08:00">2022-03-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-02 22:52:21" itemprop="dateModified" datetime="2022-04-02T22:52:21+08:00">2022-04-02</time>
+              </span>
 
           
 
@@ -194,7 +200,7 @@
         <p>今天打开wireshark想抓个包，发现打开混杂模式失败，抓不了，报错如下：<br><code> “The capture session could not be initiated on interface ‘en0’ (You don’t have permission to capture on that device). Please check to make sure you have sufficient permissions.</code></p>
 <p><img src="/2022/03/11/Wireshark/image-20220311190537752.png" alt="image-20220311190537752"></p>
 <p>解决方法也很简单：</p>
-<p>打开终端，输入：<code>sudo chmod 777/dev/bpf*</code></p>
+<p>打开终端，输入：<code>sudo chmod 777 /dev/bpf*</code></p>
 <p>重新打开WireShark，问题解决。</p>
 
     </div>
