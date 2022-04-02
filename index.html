@@ -145,6 +145,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/03/ARP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/03/ARP/" class="post-title-link" itemprop="url">ARP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-03 04:34:53 / Modified: 04:42:07" itemprop="dateCreated datePublished" datetime="2022-04-03T04:34:53+08:00">2022-04-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里描述了不同系统如何查看并删除ARP缓存。</p>
+<br>
+
+<br>
+
+<hr>
+<h3 id="什么是ARP缓存？"><a href="#什么是ARP缓存？" class="headerlink" title="什么是ARP缓存？"></a>什么是ARP缓存？</h3><p>ARP代表<strong>地址解析协议</strong>，它负责发现MAC地址并将它们映射到IP地址，以便与本地网络上的其他系统成功通信，该协议工作在<strong>数据链路层</strong>和<strong>网络层</strong>之间。</p>
+<p>当我们的系统使用 ARP 协议找到特定 IP 地址的 MAC 地址时，它们将存储在一个表中以供将来使用，此表称为 <strong>ARP 缓存</strong>，它包含已知 IP 地址及其 MAC 地址的列表。</p>
+<p>我们可以使用命令行轻松清除任何操作系统中的 ARP 缓存，让我们开始吧。</p>
+<br>
+
+<br>
+
+<hr>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>p.s. 打开cmd并以管理员身份运行。</p>
+<p>查看ARP缓存表：<code>arp-a</code></p>
+<p>删除全部缓存表：<code>arp -d</code></p>
+<p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
+<br>
+
+<br>
+
+<hr>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>查看ARP缓存表：<code>arp-n</code></p>
+<p>删除全部缓存表：<code>ip -s -s neigh flush all</code></p>
+<p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
+<br>
+
+<br>
+
+<hr>
+<p>###Mac</p>
+<p>查看ARP缓存表：<code>sudo arp-a</code></p>
+<p>删除全部缓存表：<code>sudo arp -a -d</code></p>
+<p>删除特定条目：<code>sudo arp -d 192.168.29.1 ifscope en0 </code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/11/Wireshark/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -701,12 +795,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>

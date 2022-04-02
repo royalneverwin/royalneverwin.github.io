@@ -20,15 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Legolas">
-<meta property="og:url" content="http://example.com/tags/pyTorch/index.html">
+  <meta name="description" content="写在前面这里描述了不同系统如何查看并删除ARP缓存。      什么是ARP缓存？ARP代表地址解析协议，它负责发现MAC地址并将它们映射到IP地址，以便与本地网络上的其他系统成功通信，该协议工作在数据链路层和网络层之间。 当我们的系统使用 ARP 协议找到特定 IP 地址的 MAC 地址时，它们将存储在一个表中以供将来使用，此表称为 ARP 缓存，它包含已知 IP 地址及其 MAC 地址的列表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARP">
+<meta property="og:url" content="http://example.com/2022/04/03/ARP/index.html">
 <meta property="og:site_name" content="Legolas">
+<meta property="og:description" content="写在前面这里描述了不同系统如何查看并删除ARP缓存。      什么是ARP缓存？ARP代表地址解析协议，它负责发现MAC地址并将它们映射到IP地址，以便与本地网络上的其他系统成功通信，该协议工作在数据链路层和网络层之间。 当我们的系统使用 ARP 协议找到特定 IP 地址的 MAC 地址时，它们将存储在一个表中以供将来使用，此表称为 ARP 缓存，它包含已知 IP 地址及其 MAC 地址的列表">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-02T20:34:53.000Z">
+<meta property="article:modified_time" content="2022-04-02T20:42:07.432Z">
 <meta property="article:author" content="Wang Xinhao">
+<meta property="article:tag" content="arp command">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/tags/pyTorch/">
+<link rel="canonical" href="http://example.com/2022/04/03/ARP/">
 
 
 <script id="page-configurations">
@@ -36,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Tag: pyTorch | Legolas</title>
+  <title>ARP | Legolas</title>
   
 
 
@@ -139,51 +144,115 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">pyTorch
-          <small>Tag</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/03/ARP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ARP
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-03 04:34:53 / Modified: 04:42:07" itemprop="dateCreated datePublished" datetime="2022-04-03T04:34:53+08:00">2022-04-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里描述了不同系统如何查看并删除ARP缓存。</p>
+<br>
+
+<br>
+
+<hr>
+<h3 id="什么是ARP缓存？"><a href="#什么是ARP缓存？" class="headerlink" title="什么是ARP缓存？"></a>什么是ARP缓存？</h3><p>ARP代表<strong>地址解析协议</strong>，它负责发现MAC地址并将它们映射到IP地址，以便与本地网络上的其他系统成功通信，该协议工作在<strong>数据链路层</strong>和<strong>网络层</strong>之间。</p>
+<p>当我们的系统使用 ARP 协议找到特定 IP 地址的 MAC 地址时，它们将存储在一个表中以供将来使用，此表称为 <strong>ARP 缓存</strong>，它包含已知 IP 地址及其 MAC 地址的列表。</p>
+<p>我们可以使用命令行轻松清除任何操作系统中的 ARP 缓存，让我们开始吧。</p>
+<br>
+
+<br>
+
+<hr>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>p.s. 打开cmd并以管理员身份运行。</p>
+<p>查看ARP缓存表：<code>arp-a</code></p>
+<p>删除全部缓存表：<code>arp -d</code></p>
+<p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
+<br>
+
+<br>
+
+<hr>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>查看ARP缓存表：<code>arp-n</code></p>
+<p>删除全部缓存表：<code>ip -s -s neigh flush all</code></p>
+<p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
+<br>
+
+<br>
+
+<hr>
+<p>###Mac</p>
+<p>查看ARP缓存表：<code>sudo arp-a</code></p>
+<p>删除全部缓存表：<code>sudo arp -a -d</code></p>
+<p>删除特定条目：<code>sudo arp -d 192.168.29.1 ifscope en0 </code></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-03-10T21:26:25+08:00"
-              content="2022-03-10">
-          03-10
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/arp-command/" rel="tag"># arp command</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/03/10/pyTroch/" itemprop="url">
-            <span itemprop="name">pyTorch路漫漫其修远兮</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/11/Wireshark/" rel="prev" title="Mac的Wireshark抓包失败问题">
+      <i class="fa fa-chevron-left"></i> Mac的Wireshark抓包失败问题
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -236,6 +305,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFARP%E7%BC%93%E5%AD%98%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">什么是ARP缓存？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">3.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux"><span class="nav-number">4.</span> <span class="nav-text">Linux</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
