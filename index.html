@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-04-23 18:58:53 / Modified: 19:50:19" itemprop="dateCreated datePublished" datetime="2022-04-23T18:58:53+08:00">2022-04-23</time>
+              <time title="Created: 2022-04-23 18:58:53 / Modified: 19:55:39" itemprop="dateCreated datePublished" datetime="2022-04-23T18:58:53+08:00">2022-04-23</time>
             </span>
 
           
@@ -185,7 +185,7 @@
 
       
           <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里介绍三种凸包算法：$\text{Jarvis}$算法、$\text{Graham}$算法、 $ \text{Andrew}$算法。</p>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里介绍三种凸包算法：$ \text { Jarvis } $算法、$ \text { Graham } $ 算法、 $ \text { Andrew } $算法。 </p>
 <p>使用的例题为<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/erect-the-fence/">leetcode-587：安装栅栏</a>。</p>
 <p><br></p>
 <p><br></p>
@@ -201,16 +201,16 @@
 <p>我们将三维坐标运算转移到二维，则$a_z=b_z = 0$：</p>
 <p>$a \times b = (a_xb_y-a_yb_x)k$</p>
 <p>若$a_xb_y-a_yb_x &gt; 0$，则k为正方向，从a逆时针转&lt;180度可得到b。否则k为负方向，从a顺时针转&lt;180度可得到b。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="texttt-Jarvis-算法"><a href="#texttt-Jarvis-算法" class="headerlink" title="$\texttt{Jarvis}$算法"></a>$\texttt{Jarvis}$算法</h3><p>首先必须要从凸包上的某一点开始，比如从给定点集中最左边的点开始，例如最左的一点 $A_1$。然后选择$ A_{2}$点使得所有点都在向量 $\vec{A_{1}A_{2}}  $的左方或者右方，我们每次选择左方，需要比较所有点以$ A_{1}$为原点的极坐标角度。然后以 $A_{2}$为原点，重复这个步骤，依次找到 $A_{3},A_{4},\ldots,A_{k}$。<br>给定原点 p，如何找到点 q，满足其余的点 r均在向量 $\vec{pq} $的左边?我们使用上面介绍的「向量叉积」来进行判别。为了找到点 q，我们使用函数$ \texttt{cross}()$，这个函数有 3 个参数，分别是当前凸包上的点 p，下一个会加到凸包里的点 q，其他点空间内的任何一个点 r，通过计算向量 $\vec{pq},\vec{qr} $的叉积来判断旋转方向，如果剩余所有的点 r 均满足在向量$ \vec{pq} $  的左边，则此时我们将 q 加入凸包中。</p>
 <p>我们遍历所有点 r，找到对于点 p 来说逆时针方向最靠外的点 q，把它加入凸包。如果存在 2 个点相对点 p 在同一条线上，我们应当将 q 和 p 同一线段上的边界点都考虑进来，此时需要进行标记，防止重复添加。</p>
 <p>通过这样，我们不断将凸包上的点加入，直到回到了开始的点。</p>
 <p>C++代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cross</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp; p, vector&lt;<span class="type">int</span>&gt; &amp; q, vector&lt;<span class="type">int</span>&gt; &amp; r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (q[<span class="number">0</span>] - p[<span class="number">0</span>]) * (r[<span class="number">1</span>] - q[<span class="number">1</span>]) - (q[<span class="number">1</span>] - p[<span class="number">1</span>]) * (r[<span class="number">0</span>] - q[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">outerTrees</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; trees) &#123;</span><br><span class="line">        <span class="type">int</span> n = trees.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> trees;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> leftMost = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (trees[i][<span class="number">0</span>] &lt; trees[leftMost][<span class="number">0</span>]) &#123;</span><br><span class="line">                leftMost = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visit</span><span class="params">(n, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> p = leftMost;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="type">int</span> q = (p + <span class="number">1</span>) % n;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> r = <span class="number">0</span>; r &lt; n; r++) &#123;</span><br><span class="line">                <span class="comment">/* 如果 r 在 pq 的右侧，则 q = r */</span> </span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">cross</span>(trees[p], trees[q], trees[r]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    q = r;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">/* 是否存在点 i, 使得 p 、q 、i 在同一条直线上 */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (visit[i] || i == p || i == q) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">cross</span>(trees[p], trees[q], trees[i]) == <span class="number">0</span>) &#123;</span><br><span class="line">                    res.<span class="built_in">emplace_back</span>(trees[i]);</span><br><span class="line">                    visit[i] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>  (!visit[q]) &#123;</span><br><span class="line">                res.<span class="built_in">emplace_back</span>(trees[q]);</span><br><span class="line">                visit[q] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            p = q;</span><br><span class="line">        &#125; <span class="keyword">while</span> (p != leftMost);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="texttt-Graham-算法"><a href="#texttt-Graham-算法" class="headerlink" title="$\texttt{Graham}$算法"></a>$\texttt{Graham}$算法</h3><p>这个方法的具体实现为：首先选择一个凸包上的初始点$ \textit{bottom}$。我们选择 y 坐标最小的点为起始点，我们可以肯定$ \textit{bottom}$ 一定在凸包上，将给定点集按照相对的以$ \textit{bottom}$为原点的极角大小进行排序。</p>
 <p>这一排序过程大致给了我们在逆时针顺序选点时候的思路。为了将点排序，我们使用上一方法使用过的函数$ \texttt{cross} $。极角顺序更小的点排在数组的前面。如果有两个点相对于点$ \textit{bottom} $的极角大小相同，则按照与点 $\textit{bottom}$的距离排序。</p>
@@ -220,8 +220,8 @@
 <p>如果当前点与上一条线之间的关系是右拐的，说明上一个点不应该被包括在凸壳里，因为它在边界的里面，所以我们将它从栈中弹出并考虑倒数第二条线的方向。重复这一过程，弹栈的操作会一直进行，直到我们当前点在凸壳中出现了右拐。这表示这时凸壳中只包括边界上的点而不包括边界以内的点。在所有点被遍历了一遍以后，栈中的点就是构成凸壳的点。</p>
 <p>C++代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cross</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; p, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; q, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (q[<span class="number">0</span>] - p[<span class="number">0</span>]) * (r[<span class="number">1</span>] - q[<span class="number">1</span>]) - (q[<span class="number">1</span>] - p[<span class="number">1</span>]) * (r[<span class="number">0</span>] - q[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">distance</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; p, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (p[<span class="number">0</span>] - q[<span class="number">0</span>]) * (p[<span class="number">0</span>] - q[<span class="number">0</span>]) + (p[<span class="number">1</span>] - q[<span class="number">1</span>]) * (p[<span class="number">1</span>] - q[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">outerTrees</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; &amp;trees) &#123;</span><br><span class="line">        <span class="type">int</span> n = trees.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> trees;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> bottom = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">/* 找到 y 最小的点 bottom*/</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (trees[i][<span class="number">1</span>] &lt; trees[bottom][<span class="number">1</span>]) &#123;</span><br><span class="line">                bottom = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">swap</span>(trees[bottom], trees[<span class="number">0</span>]);</span><br><span class="line">        <span class="comment">/* 以 bottom 原点，按照极坐标的角度大小进行排序 */</span></span><br><span class="line">        <span class="built_in">sort</span>(trees.<span class="built_in">begin</span>() + <span class="number">1</span>, trees.<span class="built_in">end</span>(), [&amp;](<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; a, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; b) &#123;</span><br><span class="line">            <span class="type">int</span> diff = <span class="built_in">cross</span>(trees[<span class="number">0</span>], a, b) - <span class="built_in">cross</span>(trees[<span class="number">0</span>], b, a);</span><br><span class="line">            <span class="keyword">if</span> (diff == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">distance</span>(trees[<span class="number">0</span>], a) &lt; <span class="built_in">distance</span>(trees[<span class="number">0</span>], b);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> diff &gt; <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">/* 对于凸包最后且在同一条直线的元素按照距离从小到大进行排序 */</span></span><br><span class="line">        <span class="type">int</span> r = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (r &gt;= <span class="number">0</span> &amp;&amp; <span class="built_in">cross</span>(trees[<span class="number">0</span>], trees[n - <span class="number">1</span>], trees[r]) == <span class="number">0</span>) &#123;</span><br><span class="line">            r--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> l = r + <span class="number">1</span>, h = n - <span class="number">1</span>; l &lt; h; l++, h--) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(trees[l], trees[h]);</span><br><span class="line">        &#125;</span><br><span class="line">        stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">        st.<span class="built_in">emplace</span>(<span class="number">0</span>);</span><br><span class="line">        st.<span class="built_in">emplace</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> top = st.<span class="built_in">top</span>();</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="comment">/* 如果当前元素与栈顶的两个元素构成的向量顺时针旋转，则弹出栈顶元素 */</span></span><br><span class="line">            <span class="keyword">while</span> (!st.<span class="built_in">empty</span>() &amp;&amp; <span class="built_in">cross</span>(trees[st.<span class="built_in">top</span>()], trees[top], trees[i]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                top = st.<span class="built_in">top</span>();</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            st.<span class="built_in">emplace</span>(top);</span><br><span class="line">            st.<span class="built_in">emplace</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">while</span> (!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(trees[st.<span class="built_in">top</span>()]);</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="texttt-Andrew-算法"><a href="#texttt-Andrew-算法" class="headerlink" title="$\texttt{Andrew}$算法"></a>$\texttt{Andrew}$算法</h3><p>Andrew 使用单调链算法，该算法与Graham 扫描算分类似。它们主要的不同点在于凸壳上点的顺序。与Graham 扫描算法按照点计较顺序排序不同，我们按照点的 x 坐标排序，如果两个点又相同的 x 坐标，那么就按照它们的 y 坐标排序。显然排序后的最大值与最小值一定在凸包上，而且因为是凸多边形，我们如果从一个点出发逆时针走，轨迹总是「左拐」的，一旦出现右拐，就说明这一段不在凸包上，因此我们可以用一个单调栈来维护上下凸壳。</p>
 <p>仔细观察可以发现，最大值与最小值一定位于凸包的最左边与最右边，从左向右看，我们将凸壳考虑成 22 个子边界组成：上凸壳和下凸壳。下凸壳一定是从最小值一直「左拐」直到最大值，上凸壳一定是从最大值「左拐」到最小值，因此我们首先升序枚举求出下凸壳，然后降序求出上凸壳。<br>我们首先将最初始的两个点添加到凸壳中，然后遍历排好序的 $\textit{trees}$ 数组。对于每个新的点，我们检查当前点是否在最后两个点的逆时针方向上，轨迹是否是左拐。如果是的话，当前点直接被压入凸壳 $\textit{hull}$ 中，$\textit{cross}$返回的结果为正数；如果不是的话，$\textit{cross}$返回的结果为负数，我们可以知道栈顶的元素在凸壳里面而不是凸壳边上。我们继续从$ \textit{hull}$中弹出元素直到当前点相对于栈顶的两个点的逆时针方向上。</p>
@@ -271,10 +271,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-04-09 21:50:34 / Modified: 21:58:43" itemprop="dateCreated datePublished" datetime="2022-04-09T21:50:34+08:00">2022-04-09</time>
+              <time title="Created: 2022-04-09 21:50:34" itemprop="dateCreated datePublished" datetime="2022-04-09T21:50:34+08:00">2022-04-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-23 19:53:19" itemprop="dateModified" datetime="2022-04-23T19:53:19+08:00">2022-04-23</time>
+              </span>
 
           
 
@@ -289,8 +295,8 @@
       
           <hr>
 <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里记录了Linux系统常用的快捷键。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <ul>
 <li><code>TAB</code>：命令补全，Shell会根据可用的命令或文件路径自动将其补全。如果候选不唯一时，再按一下TAB会显示所有的可能补全方式。</li>
@@ -350,10 +356,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-04-05 01:59:14 / Modified: 02:10:48" itemprop="dateCreated datePublished" datetime="2022-04-05T01:59:14+08:00">2022-04-05</time>
+              <time title="Created: 2022-04-05 01:59:14" itemprop="dateCreated datePublished" datetime="2022-04-05T01:59:14+08:00">2022-04-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-23 19:53:13" itemprop="dateModified" datetime="2022-04-23T19:53:13+08:00">2022-04-23</time>
+              </span>
 
           
 
@@ -368,13 +380,13 @@
       
           <hr>
 <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>算法笔记——线段树</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><p>它主要用于维护<strong>区间信息</strong>（要求满足结合律）。与树状数组相比，它可以实现$O(logn)$的<strong>区间修改</strong>，还可以同时支持<strong>多种操作</strong>（加、乘)，更具通用性。</p>
 <p>我们以leetcode 307. 区域和检索 - 数组可修改为例进行讲解。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="线段树的建立"><a href="#线段树的建立" class="headerlink" title="线段树的建立"></a>线段树的建立</h3><p>线段树是一棵<strong>平衡二叉树</strong>。母结点代表整个区间的和，越往下区间越小。注意，线段树的每个<strong>节点</strong>都对应一条<strong>线段（区间）</strong>，但并不保证所有的线段（区间）都是线段树的节点，这两者应当区分开。</p>
 <p>如果有一个数组[1,2,3,4,5]，那么它对应的线段树大概长这个样子：</p>
@@ -383,16 +395,16 @@
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">BuildTree</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l == r)</span><br><span class="line">        segmentTree[index] = nums[l];</span><br><span class="line">    <span class="keyword">else</span>&#123; <span class="comment">// 先求子节点</span></span><br><span class="line">        <span class="type">int</span> mid = ( l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">BuildTree</span>(nums, l, mid, <span class="number">2</span>*index); <span class="comment">// 左节点 </span></span><br><span class="line">        <span class="built_in">BuildTree</span>(nums, mid+<span class="number">1</span>, r, <span class="number">2</span>*index+<span class="number">1</span>); <span class="comment">// 右节点</span></span><br><span class="line">        segmentTree[index] = segmentTree[<span class="number">2</span>*index] + segmentTree[<span class="number">2</span>*index+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中nums是初始数组，index表示线段树中节点下标，l、r表示left和right，segmentTree[index]代表nums left到right之间的和。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="区间修改"><a href="#区间修改" class="headerlink" title="区间修改"></a>区间修改</h3><p>区间修改在某些题目中可能会涉及到所谓的<strong>懒标记</strong>，但leetcode这题中不会用到，我在这里就不过多赘述，有想了解的读者可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/106118909">这里</a>。</p>
 <p>更新时，我们是从最大的区间开始，递归向下处理。</p>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">UpdateTree</span><span class="params">(<span class="type">int</span> numIndex, <span class="type">int</span> change, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    segmentTree[index] += change;</span><br><span class="line">    <span class="keyword">if</span>(l == r)&#123; <span class="comment">// 就更新这个节点</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(numIndex &lt;= mid)</span><br><span class="line">            <span class="built_in">UpdateTree</span>(numIndex, change, l, mid, <span class="number">2</span>*index);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">UpdateTree</span>(numIndex, change, mid+<span class="number">1</span>, r, <span class="number">2</span>*index+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>numIndex表示修改的值的在nums中的下标，change表示修改后的值 - 原来的值。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="区间查询"><a href="#区间查询" class="headerlink" title="区间查询"></a>区间查询</h3><p>同样也是从最大的区间开始递归向下处理。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">QueryTree</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> cl, <span class="type">int</span> cr, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(cl &gt; r || cr &lt; l)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(cl &gt;= l &amp;&amp; cr &lt;= r)</span><br><span class="line">        <span class="keyword">return</span> segmentTree[index];</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="type">int</span> mid = (cl + cr) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">QueryTree</span>(l, r, cl, mid, <span class="number">2</span>*index) + <span class="built_in">QueryTree</span>(l, r, mid+<span class="number">1</span>, cr, <span class="number">2</span>*index+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -439,10 +451,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-04-05 01:45:35 / Modified: 02:03:08" itemprop="dateCreated datePublished" datetime="2022-04-05T01:45:35+08:00">2022-04-05</time>
+              <time title="Created: 2022-04-05 01:45:35" itemprop="dateCreated datePublished" datetime="2022-04-05T01:45:35+08:00">2022-04-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-23 19:52:58" itemprop="dateModified" datetime="2022-04-23T19:52:58+08:00">2022-04-23</time>
+              </span>
 
           
 
@@ -457,8 +475,8 @@
       
           <hr>
 <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>算法笔记：单调栈</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h3><p>单调栈分为单调递增栈和单调递减栈</p>
 <ol>
@@ -480,8 +498,8 @@
 </ol>
 <p>单调栈的代码模板</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; l; i++)&#123; <span class="comment">// 单调栈求右边第一个比它小的</span></span><br><span class="line">    <span class="keyword">if</span>(st.<span class="built_in">empty</span>() || heights[st.<span class="built_in">top</span>()] &lt;= heights[i])</span><br><span class="line">        st.<span class="built_in">push</span>(i);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; heights[st.<span class="built_in">top</span>()] &gt; heights[i])&#123;</span><br><span class="line">            rightMax[st.<span class="built_in">top</span>()] = i;</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        st.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="leetcode-84-柱状图中最大的矩形"><a href="#leetcode-84-柱状图中最大的矩形" class="headerlink" title="leetcode 84. 柱状图中最大的矩形"></a>leetcode 84. 柱状图中最大的矩形</h4><p><img src="/2022/04/05/Algorithm/image-20220405015454265.png" alt="image-20220405015454265"></p>
 <p> 给定 <em>n</em> 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
@@ -540,10 +558,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-04-04 02:25:38 / Modified: 02:45:43" itemprop="dateCreated datePublished" datetime="2022-04-04T02:25:38+08:00">2022-04-04</time>
+              <time title="Created: 2022-04-04 02:25:38" itemprop="dateCreated datePublished" datetime="2022-04-04T02:25:38+08:00">2022-04-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-23 19:52:47" itemprop="dateModified" datetime="2022-04-23T19:52:47+08:00">2022-04-23</time>
+              </span>
 
           
 
@@ -559,32 +583,32 @@
           <hr>
 <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里收录了一些让你的电脑变得更花哨（x</p>
 <p>更让你快乐工作的小玩意儿。（在blog之前做的改进暂时想不起来，等看到了再慢慢补吧…）</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="Fig"><a href="#Fig" class="headerlink" title="Fig"></a>Fig</h3><p>一个让Terminal变得更加方便快捷的程序，适用于zsh、iterm、VScode等多种开发工具。（自动补齐什么的真的是我的亲爹）</p>
 <p><img src="/2022/04/04/MakeSomethingNew/image-20220404023848056.png" alt="image-20220404023848056"></p>
 <p><a target="_blank" rel="noopener" href="https://fig.io/">戳这里</a>查看详情。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="onmyzsh"><a href="#onmyzsh" class="headerlink" title="onmyzsh"></a>onmyzsh</h3><p>让你的zsh更漂亮，如图：</p>
 <p><img src="/2022/04/04/MakeSomethingNew/image-20220404023144986.png" alt="image-20220404023144986"></p>
 <p>有多种theme可供选择（但我觉得初始的就怪好看的）。<a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh">戳这里</a>查看详情。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="Stylish"><a href="#Stylish" class="headerlink" title="Stylish"></a>Stylish</h3><p>上面有很多网站的美化界面，通过管理js、css文件对网站进行“换肤”。例如美化的北大教学网：</p>
 <p><img src="/2022/04/04/MakeSomethingNew/image-20220404023519346.png" alt="image-20220404023519346"></p>
 <p>直接google搜就行，就不贴网址了。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="Tampermonkey"><a href="#Tampermonkey" class="headerlink" title="Tampermonkey"></a>Tampermonkey</h3><p>脚本之家，太过出彩，我认为世界上每个人都应该知道这个东西。我第一次接触这个是因为室友写了个脚本发布在上面，可以在P大树洞的成绩界面显示我们通选课的类别。确实好用奥兄弟们。</p>
 <p><img src="/2022/04/04/MakeSomethingNew/image-20220404023716205.png" alt="image-20220404023716205"></p>
 <p>直接google搜就行，这里也不贴网址了。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 
       
     </div>
@@ -627,10 +651,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-04-03 04:34:53 / Modified: 04:42:07" itemprop="dateCreated datePublished" datetime="2022-04-03T04:34:53+08:00">2022-04-03</time>
+              <time title="Created: 2022-04-03 04:34:53" itemprop="dateCreated datePublished" datetime="2022-04-03T04:34:53+08:00">2022-04-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-23 19:52:30" itemprop="dateModified" datetime="2022-04-23T19:52:30+08:00">2022-04-23</time>
+              </span>
 
           
 
@@ -645,27 +675,27 @@
       
           <hr>
 <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里描述了不同系统如何查看并删除ARP缓存。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="什么是ARP缓存？"><a href="#什么是ARP缓存？" class="headerlink" title="什么是ARP缓存？"></a>什么是ARP缓存？</h3><p>ARP代表<strong>地址解析协议</strong>，它负责发现MAC地址并将它们映射到IP地址，以便与本地网络上的其他系统成功通信，该协议工作在<strong>数据链路层</strong>和<strong>网络层</strong>之间。</p>
 <p>当我们的系统使用 ARP 协议找到特定 IP 地址的 MAC 地址时，它们将存储在一个表中以供将来使用，此表称为 <strong>ARP 缓存</strong>，它包含已知 IP 地址及其 MAC 地址的列表。</p>
 <p>我们可以使用命令行轻松清除任何操作系统中的 ARP 缓存，让我们开始吧。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>p.s. 打开cmd并以管理员身份运行。</p>
 <p>查看ARP缓存表：<code>arp-a</code></p>
 <p>删除全部缓存表：<code>arp -d</code></p>
 <p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>查看ARP缓存表：<code>arp-n</code></p>
 <p>删除全部缓存表：<code>ip -s -s neigh flush all</code></p>
 <p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><p>查看ARP缓存表：<code>sudo arp-a</code></p>
 <p>删除全部缓存表：<code>sudo arp -a -d</code></p>
@@ -789,7 +819,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-11 00:26:55" itemprop="dateModified" datetime="2022-03-11T00:26:55+08:00">2022-03-11</time>
+                <time title="Modified: 2022-04-23 19:51:48" itemprop="dateModified" datetime="2022-04-23T19:51:48+08:00">2022-04-23</time>
               </span>
 
           
@@ -805,8 +835,8 @@
       
           <hr>
 <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里记录我学习到的各种 <strong>markdown</strong> 小tricks。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="如何打出类似键盘按键的符号"><a href="#如何打出类似键盘按键的符号" class="headerlink" title="如何打出类似键盘按键的符号"></a>如何打出类似键盘按键的符号</h3><p>虽然这是markdown的一个高级技巧，但我更多的是用它打出键盘按键符号23333，属于是大炮打蚊子。</p>
 <p>我们要知道的是，markdown支持html元素。</p>
@@ -867,7 +897,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-11 00:27:47" itemprop="dateModified" datetime="2022-03-11T00:27:47+08:00">2022-03-11</time>
+                <time title="Modified: 2022-04-23 20:16:08" itemprop="dateModified" datetime="2022-04-23T20:16:08+08:00">2022-04-23</time>
               </span>
 
           
@@ -883,20 +913,20 @@
       
           <hr>
 <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里记录了我建立blog以来遇到的困难和解决方法。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="创建personal-blog时deploy到github上出错"><a href="#创建personal-blog时deploy到github上出错" class="headerlink" title="创建personal blog时deploy到github上出错"></a>创建personal blog时deploy到github上出错</h3><h4 id="problem-1"><a href="#problem-1" class="headerlink" title="problem 1:"></a>problem 1:</h4><p>创建repo时，头脑一热把名字写成了Legolas，以为没什么问题</p>
 <p>deploy之后：404 not found</p>
 <p>遂重新把repo改名字成royalneverwin.github.io，终于可以显示网站了（nice</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
 <h4 id="problem-2"><a href="#problem-2" class="headerlink" title="problem 2:"></a>problem 2:</h4><p>等到我换上neXt装扮后发现不对劲，git上deploy的跟我线下显示的差距很大，不仅是版图还有内容（git上的甚至只显示了我README.md里面的内容）</p>
 <p>向<a target="_blank" rel="noopener" href="https://yawning-lion.github.io/">身边人</a>（附上好心人blog链接）求助，得来的建议：别搞README.md</p>
 <p>遂重新删掉repo，重来一边，终于搞定</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
 <p><strong>总结：循规蹈矩按照教程来…</strong></p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="上传post时报错"><a href="#上传post时报错" class="headerlink" title="上传post时报错"></a>上传post时报错</h3><p>既然blog都创建了，那就写点posting吧</p>
 <p>芜湖，正好遇到了点新知识，就写上～</p>
@@ -909,16 +939,16 @@
 <p>善用搜索后，告诉我是因为post中你写的tags和冒号之间要留一个空格</p>
 <p><img src="/2022/03/10/Problem-with-blog/20220310blog.png" alt="20220310blog"></p>
 <p>彳亍。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="MarkDown的标题中‘-’无法被识别"><a href="#MarkDown的标题中‘-’无法被识别" class="headerlink" title="MarkDown的标题中‘###’无法被识别"></a>MarkDown的标题中‘###’无法被识别</h3><p>网页上的blog内容如图所示：</p>
 <p><img src="/2022/03/10/Problem-with-blog/20220310blog2.png" alt="20220310blog2"></p>
 <p>可以看到，‘###’历历在目，为什么呢？</p>
 <p>和上一条一样…. ‘###’和标题之间要留一个空格。</p>
 <p>彳亍。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="hexo博客中插入图片失败"><a href="#hexo博客中插入图片失败" class="headerlink" title="hexo博客中插入图片失败"></a>hexo博客中插入图片失败</h3><p>这个可搞死我了…</p>
 <p>我在欣赏一位朋友的blog时，偶然发现他的笔记中记录了hexo博客插入图片失败的问题（在这之前我还没试过插入图片）。正好在写上面两个问题的时候我需要用到插入图片，而我的朋友也给了我解决问题的方法的链接，那就来试一试= =</p>
@@ -933,8 +963,31 @@
 <p>果然！我也猜是<code>hexo-assert-image</code>的问题，奈何我不懂JavaScript（菜了）</p>
 <p>于是乎我更换了<code>hexo-assert-image</code>的<code>index.js</code></p>
 <p>果然好了！（你能在这里看到上面的图片就说明成功了）</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
 <p><strong>总结：循规蹈矩跟着教程来有时候都会出问题…还是要多学一点（x</strong></p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="hexo无法正确渲染Latex数学公式"><a href="#hexo无法正确渲染Latex数学公式" class="headerlink" title="hexo无法正确渲染Latex数学公式"></a>hexo无法正确渲染Latex数学公式</h3><p>我其实很少在写blog的时候写数学公式。甚至在介绍Algorithm的时候我都是用语言叙述较多。</p>
+<p>但在写<a target="_blank" rel="noopener" href="https://royalneverwin.github.io/2022/04/23/algorithm3/">凸包算法</a>的时候，我破天荒写了一堆数学公式。结果deploy之后发现…什么啊，都没有成功转化成数学公式，我人傻了。</p>
+<p>常用的Markdown编辑器都会集成Mathjax，用来渲染文档中的类Latex格式书写的数学公式。Hexo默认使用hexo-renderer-marked 引擎渲染网页，该引擎会把一些特殊的markdown符号解释成别的东西，所以在渲染数学公式的时候就会出错。</p>
+<p>我们的解决方法如下：</p>
+<ul>
+<li><p>第一步，更换Hexo的markdown渲染引擎，hexo-renderer-kramed 引擎是在默认的渲染引擎 hexo-renderer-marked 的基础上修改了一些 bug 。命令如下：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第二步，我们继续修改hexo-renderer-kramed引擎的语义冲突，在<code>node_modules\kramed\lib\rules\inline.js</code>中进行如下修改。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line">  <span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span>,</span><br><span class="line"><span class="comment">//em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">  <span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步，在Next主题中开启MathJax开关。我们在next主题目录中打开_config.yml，把math下面的一系列false全部改成true。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">math</span>:</span><br><span class="line">  # <span class="title class_">Default</span> (<span class="literal">true</span>) will load mathjax / katex script on demand.</span><br><span class="line">  # <span class="title class_">That</span> is it only render those page which has <span class="string">`mathjax: true`</span> <span class="keyword">in</span> <span class="title class_">Front</span>-matter.</span><br><span class="line">  # <span class="title class_">If</span> you set it to <span class="literal">false</span>, it will load mathjax / katex srcipt <span class="variable constant_">EVERY</span> <span class="variable constant_">PAGE</span>.</span><br><span class="line">  <span class="attr">per_page</span>: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  # hexo-renderer-pandoc (or hexo-renderer-kramed) required <span class="keyword">for</span> full <span class="title class_">MathJax</span> support.</span><br><span class="line">  <span class="attr">mathjax</span>:</span><br><span class="line">    <span class="attr">enable</span>: <span class="literal">true</span></span><br><span class="line">    # <span class="title class_">See</span>: <span class="attr">https</span>:<span class="comment">//mhchem.github.io/MathJax-mhchem/</span></span><br><span class="line">    <span class="attr">mhchem</span>: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it <span class="keyword">with</span> markdown-it-katex plugin) required <span class="keyword">for</span> full <span class="title class_">Katex</span> support.</span><br><span class="line">  <span class="attr">katex</span>:</span><br><span class="line">    <span class="attr">enable</span>: <span class="literal">true</span></span><br><span class="line">    # <span class="title class_">See</span>: <span class="attr">https</span>:<span class="comment">//github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span></span><br><span class="line">    <span class="attr">copy_tex</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第四步，在文章的Front-matter里打开mathjax开关，如下：</p>
+<p><img src="/2022/03/10/Problem-with-blog/image-20220423201516726.png" alt="image-20220423201516726"></p>
+</li>
+<li><p>第五步，重新启动部署Hexo</p>
+</li>
+</ul>
 
       
     </div>
@@ -985,7 +1038,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-12 21:50:46" itemprop="dateModified" datetime="2022-03-12T21:50:46+08:00">2022-03-12</time>
+                <time title="Modified: 2022-04-23 19:51:31" itemprop="dateModified" datetime="2022-04-23T19:51:31+08:00">2022-04-23</time>
               </span>
 
           
@@ -1001,8 +1054,8 @@
       
           <hr>
 <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里我记录了学习<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/search.html?q=mean&amp;check_keywords=yes&amp;area=default">pyTorch</a>过程中查阅官方文档学习到的知识，记录在此作为备案。</p>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="torch-utils-data-dataLoader-Parameters"><a href="#torch-utils-data-dataLoader-Parameters" class="headerlink" title="torch.utils.data.dataLoader( ) Parameters:"></a>torch.utils.data.dataLoader( ) Parameters:</h3><ul>
 <li><code>dataset</code>: <em>Dataset</em>, dataset from which to load the data.</li>
@@ -1012,25 +1065,25 @@
 <li><code>pin_memory</code>: <em>bool,optional</em>, If <code>True</code>, the data loader will copy Tensors into CUDA pinned memory before returning them. If your data elements are a custom type, or your <code>collate_fn</code> returns a batch that is a custom type, see the example below.</li>
 <li><code>drop_last</code>: <em>bool,optional</em>, set to <code>True</code> to drop the last incomplete batch, if the dataset size is not divisible by the batch size. If <code>False</code> and the size of dataset is not divisible by the batch size, then the last batch will be smaller. (default: <code>False</code>).</li>
 </ul>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="torch-nn-MSELoss-parameters"><a href="#torch-nn-MSELoss-parameters" class="headerlink" title="torch.nn.MSELoss( ) parameters:"></a>torch.nn.MSELoss( ) parameters:</h3><p>(two parameters before it was deprecated)</p>
 <ul>
 <li><code>reduction</code>: <em>string,optional</em>: Specifies the reduction to apply to the output: <code>&#39;none&#39;</code> | <code>&#39;mean&#39;</code> | <code>&#39;sum&#39;</code>. <code>&#39;none&#39;</code>: no reduction will be applied, <code>&#39;mean&#39;</code>: the sum of the output will be divided by the number of elements in the output, <code>&#39;sum&#39;</code>: the output will be summed. Note: <code>size_average</code> and <code>reduce</code> are in the process of being deprecated, and in the meantime, specifying either of those two args will override <code>reduction</code>. Default: <code>&#39;mean&#39;</code>.</li>
 </ul>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="optimizer-getattr-torch-optim-config-‘optimizer’-model-parameters-config-‘optim-hparas’"><a href="#optimizer-getattr-torch-optim-config-‘optimizer’-model-parameters-config-‘optim-hparas’" class="headerlink" title="optimizer = getattr(torch.optim, config[‘optimizer’])( model.parameters(), **config[‘optim_hparas’])"></a>optimizer = getattr(torch.optim, config[‘optimizer’])( model.parameters(), **config[‘optim_hparas’])</h3><p><strong>getattr(object, name, [, default])</strong> method returns the value of the named attribute of an object. If not found, it returns the default value provided to the function.</p>
-<p>​    &lt;/br&gt;</p>
+<p>​    <br></p>
 <p><strong>torch.optim</strong> is a package implementing various optimization algorithms. Including SGD, Adam, etc.</p>
 <p><strong>torch.optim.Optimizer</strong> parameters：</p>
 <ul>
 <li><code>params</code>：<em>iterable</em>, an iterable of torch.Tensor’s or dict’s. Specifies what Tensors should be optimized.</li>
 <li><code>defaults</code>：<em>dict</em>, a dict containing default values of optimization options (used when a parameter group doesn’t specify them).</li>
 </ul>
-<p>&lt;/br&gt;</p>
+<p><br></p>
 <p><strong>**config</strong>：（这里就用中文方便理解了）</p>
 <p>*args 和 **kwargs 主要用于函数定义。</p>
 <p>你可以将不定数量的参数传递给一个函数。不定的意思是：预先并不知道, 函数使用者会传递多少个参数给你, 所以在这个场景下使用这两个关键字。其实并不是必须写成 *args 和 **kwargs。  *(星号) 才是必须的. 你也可以写成 *ar  和 **k 。而写成 *args 和 **kwargs 只是一个通俗的命名约定。</p>
@@ -1041,8 +1094,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">name, *args</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(<span class="string">&#x27;你好:&#x27;</span>, name)</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> i <span class="keyword">in</span> args:</span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&quot;你的宠物有:&quot;</span>, i)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(<span class="string">&quot;Geek&quot;</span>, <span class="string">&quot;dog&quot;</span>, <span class="string">&quot;cat&quot;</span>)</span><br><span class="line">你好: Geek</span><br><span class="line">你的宠物有: dog</span><br><span class="line">你的宠物有: cat</span><br></pre></td></tr></table></figure>
 <p>使用 **kwargs</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">**kwargs</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&quot;&#123;0&#125; 喜欢 &#123;1&#125;&quot;</span>.<span class="built_in">format</span>(key, value))</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(Geek=<span class="string">&quot;cat&quot;</span>, cat=<span class="string">&quot;box&quot;</span>)</span><br><span class="line">Geek 喜欢 cat</span><br><span class="line">cat 喜欢 box</span><br></pre></td></tr></table></figure>
-<p>&lt;/br&gt;</p>
-<p>&lt;/br&gt;</p>
+<p><br></p>
+<p><br></p>
 <hr>
 <h3 id="mse-loss-detach-cpu-item"><a href="#mse-loss-detach-cpu-item" class="headerlink" title="mse_loss().detach().cpu().item()"></a>mse_loss().detach().cpu().item()</h3><ul>
 <li><code>item()</code>：将张量的值转换为标准的 Python 数值，只有当张量仅含一个元素时才能使用它</li>
@@ -1225,6 +1278,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
