@@ -145,6 +145,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/26/Algorithm4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/26/Algorithm4/" class="post-title-link" itemprop="url">水塘抽样</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-26 00:02:24 / Modified: 00:36:48" itemprop="dateCreated datePublished" datetime="2022-04-26T00:02:24+08:00">2022-04-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>水塘抽样用于在大数据流中的随机抽样问题，即：<strong>当内存无法加载全部数据时，如何从包含未知大小的数据流中随机选取k个数据，并且要保证每个数据被抽取到的概率相等</strong>。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="k-1"><a href="#k-1" class="headerlink" title="k = 1"></a>k = 1</h3><p>我们假设数据中有N个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{1}{N}$。</p>
+<p>那么我们可以：遇到第i个数，我们以$\frac{1}{i}$的概率保留它。</p>
+<p>则$p(i) = \frac{1}{i} <em>(1-\frac{1}{i+1})</em>(1-\frac{1}{i+2}) <em>…</em>(1 - \frac{1}{n}) = \frac{1}{i} <em> \frac{i}{i+1} </em> … * \frac{n-1}{n} = \frac{1}{n}$。</p>
+<p>所以只要采取这种策略，我们只要遍历一边数据就可以得到采样值，并且保证所有数被选取的概率为$\frac{1}{N}$。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="k-gt-1"><a href="#k-gt-1" class="headerlink" title="k &gt; 1"></a>k &gt; 1</h3><p>同上，我们依然假设数据中有K个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{k}{N}$。</p>
+<p>那么我们可以：对前k个数，保留下来的概率为1；对第i (i&gt;k)个数，我们以$\frac{k}{i}$的概率保留它，并且若保留了第i个数，我们以$\frac{1}{k}$的概率对前面已经选择的k个数选择任意一个进行替换。</p>
+<p>证明如下：</p>
+<p>对第k+1个数，我们以$\frac{k}{k+1}$的概率保留它，那么前k个数倍保留的概率为$\frac{1}{k+1} + \frac{k}{k+1} * \frac{k-1}{k} = \frac{k}{k+1}$</p>
+<p>对第k+2个数，我们以$\frac{k}{k+2}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{k+1} <em> (\frac{2}{k+2} + \frac{k}{k+2} </em> \frac{k-1}{k}) = \frac{k}{k+2}$</p>
+<p>…</p>
+<p>对第i个数，我们以$\frac{k}{i}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{i-1} <em> (\frac{i-k}{i} + \frac{k}{i} </em> \frac{k-1}{k}) = \frac{k}{i}$</p>
+<p>证毕。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/23/algorithm3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1003,121 +1081,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/pyTroch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/10/pyTroch/" class="post-title-link" itemprop="url">pyTorch路漫漫其修远兮</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-10 21:26:25" itemprop="dateCreated datePublished" datetime="2022-03-10T21:26:25+08:00">2022-03-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-23 19:51:31" itemprop="dateModified" datetime="2022-04-23T19:51:31+08:00">2022-04-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里我记录了学习<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/search.html?q=mean&amp;check_keywords=yes&amp;area=default">pyTorch</a>过程中查阅官方文档学习到的知识，记录在此作为备案。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="torch-utils-data-dataLoader-Parameters"><a href="#torch-utils-data-dataLoader-Parameters" class="headerlink" title="torch.utils.data.dataLoader( ) Parameters:"></a>torch.utils.data.dataLoader( ) Parameters:</h3><ul>
-<li><code>dataset</code>: <em>Dataset</em>, dataset from which to load the data.</li>
-<li><code>batch_size</code>: <em>int,optional</em>, how many samples per batch to load (default: <code>1</code>).</li>
-<li><code>shuffle</code>: <em>bool,optional</em>, set to <code>True</code> to have the data reshuffled at every epoch (default: <code>False</code>).</li>
-<li><code>num_workers</code>:  <em>int,optional</em>, how many subprocesses to use for data loading. <code>0</code> means that the data will be loaded in the main process. (default: <code>0</code>).</li>
-<li><code>pin_memory</code>: <em>bool,optional</em>, If <code>True</code>, the data loader will copy Tensors into CUDA pinned memory before returning them. If your data elements are a custom type, or your <code>collate_fn</code> returns a batch that is a custom type, see the example below.</li>
-<li><code>drop_last</code>: <em>bool,optional</em>, set to <code>True</code> to drop the last incomplete batch, if the dataset size is not divisible by the batch size. If <code>False</code> and the size of dataset is not divisible by the batch size, then the last batch will be smaller. (default: <code>False</code>).</li>
-</ul>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="torch-nn-MSELoss-parameters"><a href="#torch-nn-MSELoss-parameters" class="headerlink" title="torch.nn.MSELoss( ) parameters:"></a>torch.nn.MSELoss( ) parameters:</h3><p>(two parameters before it was deprecated)</p>
-<ul>
-<li><code>reduction</code>: <em>string,optional</em>: Specifies the reduction to apply to the output: <code>&#39;none&#39;</code> | <code>&#39;mean&#39;</code> | <code>&#39;sum&#39;</code>. <code>&#39;none&#39;</code>: no reduction will be applied, <code>&#39;mean&#39;</code>: the sum of the output will be divided by the number of elements in the output, <code>&#39;sum&#39;</code>: the output will be summed. Note: <code>size_average</code> and <code>reduce</code> are in the process of being deprecated, and in the meantime, specifying either of those two args will override <code>reduction</code>. Default: <code>&#39;mean&#39;</code>.</li>
-</ul>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="optimizer-getattr-torch-optim-config-‘optimizer’-model-parameters-config-‘optim-hparas’"><a href="#optimizer-getattr-torch-optim-config-‘optimizer’-model-parameters-config-‘optim-hparas’" class="headerlink" title="optimizer = getattr(torch.optim, config[‘optimizer’])( model.parameters(), **config[‘optim_hparas’])"></a>optimizer = getattr(torch.optim, config[‘optimizer’])( model.parameters(), **config[‘optim_hparas’])</h3><p><strong>getattr(object, name, [, default])</strong> method returns the value of the named attribute of an object. If not found, it returns the default value provided to the function.</p>
-<p>​    <br></p>
-<p><strong>torch.optim</strong> is a package implementing various optimization algorithms. Including SGD, Adam, etc.</p>
-<p><strong>torch.optim.Optimizer</strong> parameters：</p>
-<ul>
-<li><code>params</code>：<em>iterable</em>, an iterable of torch.Tensor’s or dict’s. Specifies what Tensors should be optimized.</li>
-<li><code>defaults</code>：<em>dict</em>, a dict containing default values of optimization options (used when a parameter group doesn’t specify them).</li>
-</ul>
-<p><br></p>
-<p><strong>**config</strong>：（这里就用中文方便理解了）</p>
-<p>*args 和 **kwargs 主要用于函数定义。</p>
-<p>你可以将不定数量的参数传递给一个函数。不定的意思是：预先并不知道, 函数使用者会传递多少个参数给你, 所以在这个场景下使用这两个关键字。其实并不是必须写成 *args 和 **kwargs。  *(星号) 才是必须的. 你也可以写成 *ar  和 **k 。而写成 *args 和 **kwargs 只是一个通俗的命名约定。</p>
-<p>python函数传递参数的方式有两种：位置参数（positional argument）, 关键词参数（keyword argument）<br>*args 与 **kwargs 的区别，两者都是 python 中的可变参数：</p>
-<p>*args 表示任何多个无名参数，它本质是一个 tuple<br>**kwargs 表示关键字参数，它本质上是一个 dict<br>如果同时使用 *args 和 **kwargs 时，必须 *args 参数列要在 **kwargs 之前。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(<span class="string">&#x27;args=&#x27;</span>, args)</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(<span class="string">&#x27;kwargs=&#x27;</span>, kwargs)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, A=<span class="string">&#x27;a&#x27;</span>, B=<span class="string">&#x27;b&#x27;</span>, C=<span class="string">&#x27;c&#x27;</span>, D=<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line">args= (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">kwargs= &#123;<span class="string">&#x27;A&#x27;</span>: <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;B&#x27;</span>: <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;C&#x27;</span>: <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;D&#x27;</span>: <span class="string">&#x27;d&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 *args</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">name, *args</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(<span class="string">&#x27;你好:&#x27;</span>, name)</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> i <span class="keyword">in</span> args:</span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&quot;你的宠物有:&quot;</span>, i)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(<span class="string">&quot;Geek&quot;</span>, <span class="string">&quot;dog&quot;</span>, <span class="string">&quot;cat&quot;</span>)</span><br><span class="line">你好: Geek</span><br><span class="line">你的宠物有: dog</span><br><span class="line">你的宠物有: cat</span><br></pre></td></tr></table></figure>
-<p>使用 **kwargs</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">**kwargs</span>):</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line"><span class="meta">... </span>        <span class="built_in">print</span>(<span class="string">&quot;&#123;0&#125; 喜欢 &#123;1&#125;&quot;</span>.<span class="built_in">format</span>(key, value))</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fun(Geek=<span class="string">&quot;cat&quot;</span>, cat=<span class="string">&quot;box&quot;</span>)</span><br><span class="line">Geek 喜欢 cat</span><br><span class="line">cat 喜欢 box</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="mse-loss-detach-cpu-item"><a href="#mse-loss-detach-cpu-item" class="headerlink" title="mse_loss().detach().cpu().item()"></a>mse_loss().detach().cpu().item()</h3><ul>
-<li><code>item()</code>：将张量的值转换为标准的 Python 数值，只有当张量仅含一个元素时才能使用它</li>
-<li><code>detach()</code>：返回一个与当前 graph 分离的、不再需要梯度的新张量</li>
-<li><code>cpu()</code>：将张量拷贝到 CPU 上</li>
-<li><code>mse_loss()</code> = MSELoss( )</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1187,7 +1150,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
