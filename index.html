@@ -644,7 +644,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-23 19:52:47" itemprop="dateModified" datetime="2022-04-23T19:52:47+08:00">2022-04-23</time>
+                <time title="Modified: 2022-05-06 00:46:04" itemprop="dateModified" datetime="2022-05-06T00:46:04+08:00">2022-05-06</time>
               </span>
 
           
@@ -687,6 +687,15 @@
 <p>直接google搜就行，这里也不贴网址了。</p>
 <p><br></p>
 <p><br></p>
+<hr>
+<h3 id="Code-Page"><a href="#Code-Page" class="headerlink" title="Code Page"></a>Code Page</h3><p>Code Page，是字符编码的另一种说法。</p>
+<p>Code Page包含了一个表，表中的值，用于表示针对某种语言所用的字符集。</p>
+<p>更简单点说，就是Code Page中，用一个数字编号，表示了所要采用何种字符编码，去编解码相应的值，用于正确显示出相应的字符。</p>
+<p>Code Page这一概念，源于IBM，后被其他常见广泛采用，包括Microsoft，SAP，Oracle等。</p>
+<p>这些常见，各自定义了一套自己的Code Page，给每一个code page号，指定一个字符编码。</p>
+<p>比如，对于众所周知的UTF-8编码，在IBM的Code Page中编号是1208，在微软中是65001，在SAP中是4110。</p>
+<p>我为什么要了解这个呢？是给女朋友写了一个很简单的小程序，结果cmd中输出的是乱码…我才知道Windows默认的编码是ANSI，为了要让Windows使用utf-8编码，我们要在程序前加入如下指令：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> defined(_WIN16) || defined(_WIN32) || defined(_WIN64)</span></span><br><span class="line">    <span class="comment">// change code page，use utf-8</span></span><br><span class="line">        system(<span class="string">&quot;chcp 65001&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
       
     </div>
