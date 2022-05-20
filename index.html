@@ -362,10 +362,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-04-26 00:02:24 / Modified: 00:36:48" itemprop="dateCreated datePublished" datetime="2022-04-26T00:02:24+08:00">2022-04-26</time>
+              <time title="Created: 2022-04-26 00:02:24" itemprop="dateCreated datePublished" datetime="2022-04-26T00:02:24+08:00">2022-04-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-05-21 03:20:59" itemprop="dateModified" datetime="2022-05-21T03:20:59+08:00">2022-05-21</time>
+              </span>
 
           
 
@@ -385,7 +391,7 @@
 <hr>
 <h3 id="k-1"><a href="#k-1" class="headerlink" title="k = 1"></a>k = 1</h3><p>我们假设数据中有N个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{1}{N}$。</p>
 <p>那么我们可以：遇到第i个数，我们以$\frac{1}{i}$的概率保留它。</p>
-<p>则$p(i) = \frac{1}{i} <em>(1-\frac{1}{i+1})</em>(1-\frac{1}{i+2}) <em>…</em>(1 - \frac{1}{n}) = \frac{1}{i} <em> \frac{i}{i+1} </em> … * \frac{n-1}{n} = \frac{1}{n}$。</p>
+<p>则$p(i) = \frac{1}{i} (1-\frac{1}{i+1})  (1-\frac{1}{i+2})  …  (1 - \frac{1}{n}) = \frac{1}{i}  \frac{i}{i+1}  …  \frac{n-1}{n} = \frac{1}{n}$。</p>
 <p>所以只要采取这种策略，我们只要遍历一边数据就可以得到采样值，并且保证所有数被选取的概率为$\frac{1}{N}$。</p>
 <p><br></p>
 <p><br></p>
@@ -394,9 +400,9 @@
 <p>那么我们可以：对前k个数，保留下来的概率为1；对第i (i&gt;k)个数，我们以$\frac{k}{i}$的概率保留它，并且若保留了第i个数，我们以$\frac{1}{k}$的概率对前面已经选择的k个数选择任意一个进行替换。</p>
 <p>证明如下：</p>
 <p>对第k+1个数，我们以$\frac{k}{k+1}$的概率保留它，那么前k个数倍保留的概率为$\frac{1}{k+1} + \frac{k}{k+1} * \frac{k-1}{k} = \frac{k}{k+1}$</p>
-<p>对第k+2个数，我们以$\frac{k}{k+2}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{k+1} <em> (\frac{2}{k+2} + \frac{k}{k+2} </em> \frac{k-1}{k}) = \frac{k}{k+2}$</p>
+<p>对第k+2个数，我们以$\frac{k}{k+2}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{k+1}  (\frac{2}{k+2} + \frac{k}{k+2} * \frac{k-1}{k}) = \frac{k}{k+2}$</p>
 <p>…</p>
-<p>对第i个数，我们以$\frac{k}{i}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{i-1} <em> (\frac{i-k}{i} + \frac{k}{i} </em> \frac{k-1}{k}) = \frac{k}{i}$</p>
+<p>对第i个数，我们以$\frac{k}{i}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{i-1}  (\frac{i-k}{i} + \frac{k}{i} * \frac{k-1}{k}) = \frac{k}{i}$</p>
 <p>证毕。</p>
 
       
