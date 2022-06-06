@@ -145,6 +145,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/03/ARP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/03/ARP/" class="post-title-link" itemprop="url">ARP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-03 04:34:53" itemprop="dateCreated datePublished" datetime="2022-04-03T04:34:53+08:00">2022-04-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-23 19:52:30" itemprop="dateModified" datetime="2022-04-23T19:52:30+08:00">2022-04-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里描述了不同系统如何查看并删除ARP缓存。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="什么是ARP缓存？"><a href="#什么是ARP缓存？" class="headerlink" title="什么是ARP缓存？"></a>什么是ARP缓存？</h3><p>ARP代表<strong>地址解析协议</strong>，它负责发现MAC地址并将它们映射到IP地址，以便与本地网络上的其他系统成功通信，该协议工作在<strong>数据链路层</strong>和<strong>网络层</strong>之间。</p>
+<p>当我们的系统使用 ARP 协议找到特定 IP 地址的 MAC 地址时，它们将存储在一个表中以供将来使用，此表称为 <strong>ARP 缓存</strong>，它包含已知 IP 地址及其 MAC 地址的列表。</p>
+<p>我们可以使用命令行轻松清除任何操作系统中的 ARP 缓存，让我们开始吧。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>p.s. 打开cmd并以管理员身份运行。</p>
+<p>查看ARP缓存表：<code>arp-a</code></p>
+<p>删除全部缓存表：<code>arp -d</code></p>
+<p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>查看ARP缓存表：<code>arp-n</code></p>
+<p>删除全部缓存表：<code>ip -s -s neigh flush all</code></p>
+<p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><p>查看ARP缓存表：<code>sudo arp-a</code></p>
+<p>删除全部缓存表：<code>sudo arp -a -d</code></p>
+<p>删除特定条目：<code>sudo arp -d 192.168.29.1 ifscope en0</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/11/Wireshark/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/11/Wireshark/" class="post-title-link" itemprop="url">Mac的Wireshark抓包失败问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-03-11 19:02:55" itemprop="dateCreated datePublished" datetime="2022-03-11T19:02:55+08:00">2022-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-02 22:52:21" itemprop="dateModified" datetime="2022-04-02T22:52:21+08:00">2022-04-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>今天打开wireshark想抓个包，发现打开混杂模式失败，抓不了，报错如下：<br><code>“The capture session could not be initiated on interface ‘en0’ (You don’t have permission to capture on that device). Please check to make sure you have sufficient permissions.</code></p>
+<p><img src="/2022/03/11/Wireshark/image-20220311190537752.png" alt="image-20220311190537752"></p>
+<p>解决方法也很简单：</p>
+<p>打开终端，输入：<code>sudo chmod 777 /dev/bpf*</code></p>
+<p>重新打开WireShark，问题解决。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/Markdown/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -625,7 +785,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

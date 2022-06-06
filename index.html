@@ -145,6 +145,182 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/06/algorithm6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/06/algorithm6/" class="post-title-link" itemprop="url">差分数组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-06-06 18:01:28 / Modified: 18:14:15" itemprop="dateCreated datePublished" datetime="2022-06-06T18:01:28+08:00">2022-06-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>差分数组是一种非常方便元素统计的方法。</p>
+<p>适用场景：频繁的对一段元素更新相同的值。</p>
+<p>如果给你一个包含5000万个元素的数组，然后会有频繁区间修改操作，那什么是频繁的区间修改操作呢？比如让第1个数到第1000万个数每个数都加上1，而且这种操作时频繁的。</p>
+<p>此时你应该怎么做？很容易想到的是，从第1个数开始遍历，一直遍历到第1000万个数，然后每个数都加上1，如果这种操作很频繁的话，那这种暴力的方法在一些实时的系统中可能就拉跨了。</p>
+<p>因此，今天的主角就出现了——<strong>差分数组</strong>。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="差分数组原理"><a href="#差分数组原理" class="headerlink" title="差分数组原理"></a>差分数组原理</h3><p>假设我们有数组array，则差分数组是一个和array大小一样的数组darray，其中满足关系darray[i] = array[i] - array[i-1]（i != 0），darray[0] = array[0]。</p>
+<p>如果在数组array上，我们需要更新一段区间的值（比如start到end每个元素+1），普通array需要更新start到end中间的每一个值，但darray就不一样啦！</p>
+<p>根据定义，我们只需要更新darray[start] += 1，array[end+1] -= 1即可。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>Leetcode <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/my-calendar-iii/">732. 我的日程安排表III</a></p>
+<p>同样用map代替array</p>
+<p>废话不多说，看代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyCalendarThree</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用unordered_map是因为不能用数组构造一个真正的树 空间过于浪费 只能用hash表示</span></span><br><span class="line"><span class="comment">// 线段树一般从1开始</span></span><br><span class="line">map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; mmap;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> maxH;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyCalendarThree</span>() &#123;</span><br><span class="line">        mmap = <span class="built_in">map</span>&lt;<span class="type">int</span>, <span class="type">int</span>&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">book</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span> </span>&#123;</span><br><span class="line">        mmap[start]++;</span><br><span class="line">        mmap[end]--;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;[_, freq]: mmap) &#123;</span><br><span class="line">            sum += freq;</span><br><span class="line">            ret = <span class="built_in">max</span>(ret, sum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/06/algorithm5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/06/algorithm5/" class="post-title-link" itemprop="url">线段树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-06-06 17:05:17 / Modified: 18:01:07" itemprop="dateCreated datePublished" datetime="2022-06-06T17:05:17+08:00">2022-06-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>最近写题碰到了很多线段树解法，这里就做一个总结吧</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="为什么要用线段树"><a href="#为什么要用线段树" class="headerlink" title="为什么要用线段树"></a>为什么要用线段树</h3><p>如果我们用一个数组存一堆数，并且想对一个区间查询其区间和：</p>
+<p>对这个数组求区间和操作时间复杂度为$O(n)$</p>
+<p>对这个数组的更新操作时间复杂度为$O(1)$</p>
+<p>…</p>
+<p>如果我们用前缀和的方式存一堆数，并且想对一个区间查询其区间和：</p>
+<p>对这个数组求区间和操作时间复杂度为$O(1)$（减法而已）</p>
+<p>对这个数组的更新操作时间复杂度为$O(n)$（该下标以及靠后的元素都要更新）</p>
+<p>…</p>
+<p>那么有没有一种能均衡两个操作时间复杂度的方法呢？</p>
+<div align="center"><span style="color:red;background:;font-size:30px;font-family:字体;">线段树！</span></div>
+
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="线段树介绍"><a href="#线段树介绍" class="headerlink" title="线段树介绍"></a>线段树介绍</h3><p>线段树的查询和更新的时间复杂度都为$O(logn)$。</p>
+<p>每一个数组的元素在线段树中都以叶子节点的形式存在，父节点存储了子节点的节点值和，也就是说每个非叶子节点都表示一个区间的元素和。根节点则存储所有元素的和。如图所示：</p>
+<p><img src="/2022/06/06/algorithm5/1654492806-OPBLfB-image.png" alt="image.png"></p>
+<p>这样，查询操作就是在树中找到合适的区间，然后求和即可；更新操作则是更新叶子结点，然后更新所有区间包括这个叶子结点的非叶子节点。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="线段树的检索和更新"><a href="#线段树的检索和更新" class="headerlink" title="线段树的检索和更新"></a>线段树的检索和更新</h3><p>检索：</p>
+<p>case 1: 如果检索区间和当前区间没有交集，则可以直接return 0，不再检索这个区间。</p>
+<p>case 2: 如果检索区间包围了当前区间，则当前区间的所有内容我都要，就直接返回当前节点的值，不用再向下检索了。</p>
+<p>case3: 如果检索区间和当前区间有交集，但不是case 2，则递归检索当前区间的所有子节点。</p>
+<p>更新：</p>
+<p>从根节点到子节点递归更新即可。</p>
+<p>p.s. 更新时可以在父节点设计一个懒标记，标记该父节点的所有子节点都需要更新懒标记记录的值，但暂时不往下更新，而是当检索的时候需要检索父节点的子节点时，再往下更新。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>Leetcode <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/my-calendar-iii/">732. 我的日程安排表III</a></p>
+<p>之前写过一个更经典的线段树 但忘了是哪一题（x），就用这题凑合一下</p>
+<p>这里的懒标记不需要往下传递，因为求的不是区间和而是最大值，所以父节点标记其子节点共有的update就够了。</p>
+<p>class MyCalendarThree {<br>public:<br>    unordered_map<int, pair<int, int>&gt; tree;</int,></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyCalendarThree</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用unordered_map是因为不能用数组构造一个真正的树 空间过于浪费 只能用hash表示</span></span><br><span class="line"><span class="comment">// 线段树一般从1开始</span></span><br><span class="line">unordered_map&lt;<span class="type">int</span>, pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; mmap;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> maxH;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyCalendarThree</span>() &#123;</span><br><span class="line">        mmap = unordered_map&lt;<span class="type">int</span>, pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Update</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(end &lt; l || r &lt; start)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(start &lt;= l &amp;&amp; r &lt;= end)&#123;</span><br><span class="line">            mmap[index].second++;</span><br><span class="line">            mmap[index].first++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">Update</span>(start, end, l, mid, <span class="number">2</span> * index);</span><br><span class="line">            <span class="built_in">Update</span>(start, end, mid + <span class="number">1</span>, r, <span class="number">2</span> * index + <span class="number">1</span>);</span><br><span class="line">            mmap[index].first = mmap[index].second + <span class="built_in">max</span>(mmap[<span class="number">2</span> * index].first, mmap[<span class="number">2</span> *index + <span class="number">1</span>].first);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">book</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">Update</span>(start, end - <span class="number">1</span>, <span class="number">0</span>, <span class="number">1000000000</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> mmap[<span class="number">1</span>].first;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/learnGDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -960,166 +1136,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/03/ARP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/03/ARP/" class="post-title-link" itemprop="url">ARP</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-03 04:34:53" itemprop="dateCreated datePublished" datetime="2022-04-03T04:34:53+08:00">2022-04-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-23 19:52:30" itemprop="dateModified" datetime="2022-04-23T19:52:30+08:00">2022-04-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里描述了不同系统如何查看并删除ARP缓存。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="什么是ARP缓存？"><a href="#什么是ARP缓存？" class="headerlink" title="什么是ARP缓存？"></a>什么是ARP缓存？</h3><p>ARP代表<strong>地址解析协议</strong>，它负责发现MAC地址并将它们映射到IP地址，以便与本地网络上的其他系统成功通信，该协议工作在<strong>数据链路层</strong>和<strong>网络层</strong>之间。</p>
-<p>当我们的系统使用 ARP 协议找到特定 IP 地址的 MAC 地址时，它们将存储在一个表中以供将来使用，此表称为 <strong>ARP 缓存</strong>，它包含已知 IP 地址及其 MAC 地址的列表。</p>
-<p>我们可以使用命令行轻松清除任何操作系统中的 ARP 缓存，让我们开始吧。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>p.s. 打开cmd并以管理员身份运行。</p>
-<p>查看ARP缓存表：<code>arp-a</code></p>
-<p>删除全部缓存表：<code>arp -d</code></p>
-<p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>查看ARP缓存表：<code>arp-n</code></p>
-<p>删除全部缓存表：<code>ip -s -s neigh flush all</code></p>
-<p>删除特定条目：<code>arp -d &lt;ip-address&gt;</code></p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><p>查看ARP缓存表：<code>sudo arp-a</code></p>
-<p>删除全部缓存表：<code>sudo arp -a -d</code></p>
-<p>删除特定条目：<code>sudo arp -d 192.168.29.1 ifscope en0</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/11/Wireshark/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/11/Wireshark/" class="post-title-link" itemprop="url">Mac的Wireshark抓包失败问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-11 19:02:55" itemprop="dateCreated datePublished" datetime="2022-03-11T19:02:55+08:00">2022-03-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-02 22:52:21" itemprop="dateModified" datetime="2022-04-02T22:52:21+08:00">2022-04-02</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今天打开wireshark想抓个包，发现打开混杂模式失败，抓不了，报错如下：<br><code>“The capture session could not be initiated on interface ‘en0’ (You don’t have permission to capture on that device). Please check to make sure you have sufficient permissions.</code></p>
-<p><img src="/2022/03/11/Wireshark/image-20220311190537752.png" alt="image-20220311190537752"></p>
-<p>解决方法也很简单：</p>
-<p>打开终端，输入：<code>sudo chmod 777 /dev/bpf*</code></p>
-<p>重新打开WireShark，问题解决。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1189,7 +1205,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
