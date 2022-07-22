@@ -145,6 +145,225 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/22/algorithm9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/22/algorithm9/" class="post-title-link" itemprop="url">二项式反演</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-07-22 18:13:32 / Modified: 18:41:51" itemprop="dateCreated datePublished" datetime="2022-07-22T18:13:32+08:00">2022-07-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里就不给推导了，直接上公式：</p>
+<p>$𝑓(𝑛)=∑_{𝑖=0}^n(−1)^𝑖C^i_n𝑔(𝑖)⇔𝑔(𝑛)=∑_{𝑖=0}^𝑛(−1)^𝑖C_n^i𝑓(𝑖)$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/22/algorithm8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/22/algorithm8/" class="post-title-link" itemprop="url">基尔霍夫矩阵</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-07-22 18:05:54 / Modified: 18:13:24" itemprop="dateCreated datePublished" datetime="2022-07-22T18:05:54+08:00">2022-07-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>基尔霍夫矩阵树定理：可以方便的解决给定 n 个点 m 条边的无向图，求图的生成树个数的问题。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="基尔霍夫矩阵："><a href="#基尔霍夫矩阵：" class="headerlink" title="基尔霍夫矩阵："></a>基尔霍夫矩阵：</h3><h5 id="1-基本定义"><a href="#1-基本定义" class="headerlink" title="1 基本定义"></a>1 基本定义</h5><p>1）无向图 𝐺：给定 𝑛 个点，𝑚 条边的无向图，设点集为 𝑉，边集为 𝐸，则其记为 𝐺(𝑉,𝐸)</p>
+<p>2）度数矩阵 𝐷[𝐺]：当 𝑖≠𝑗时，𝐷[𝑖][𝑗]=0，当 𝑖=𝑗 时，𝐷[𝑖][𝑗]=点𝑣的度数</p>
+<p>3）邻接矩阵 𝐴[𝐺]：当 𝑣𝑖、𝑣𝑗 有边连接时，𝐴[𝑖][𝑗]=1，当 𝑣𝑖、𝑣𝑗 无边连接时，𝐴[𝑖][𝑗]=0</p>
+<p>4）基尔霍夫矩阵(Kirchhoff) 𝐾[𝐺]：也称拉普拉斯算子，其定义为 𝐾[𝐺]=𝐷[𝐺]−𝐴[𝐺]，即：𝐾[𝑖][𝑗]=𝐷[𝑖][𝑗]−𝐴[𝑖][𝑗]</p>
+<p><br></p>
+<h5 id="2-性质（看看就好）"><a href="#2-性质（看看就好）" class="headerlink" title="2 性质（看看就好）"></a>2 性质（看看就好）</h5><p>对于任意一个图 𝐺，其基尔霍夫矩阵 𝐾 具有以下性质：</p>
+<p>1.基尔霍夫矩阵 𝐾 的每一行或每一列上的元素和都是 0<br>2.基尔霍夫矩阵 𝐾 的行列式的值为 0<br>3.基尔霍夫矩阵 𝐾 的任意一个代数余子式值都相同<br>4.如果图 𝐺 不连通，基尔霍夫矩阵 𝐾 的任意主子式行列式值为 0<br>5.如果图 𝐺 是一棵树，基尔霍夫矩阵 𝐾 的任意一个 𝑛−1 阶主子式的行列式为 1</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="Matrix-Tree-定理："><a href="#Matrix-Tree-定理：" class="headerlink" title="Matrix-Tree 定理："></a>Matrix-Tree 定理：</h3><p><strong>对于已经得出的基尔霍夫矩阵，去掉其随意一行一列得出的矩阵的行列式，其绝对值为生成树的个数</strong></p>
+<p>因此，对于给定的图 𝐺，若要求其生成树个数，可以先求其基尔霍夫矩阵，然后随意取其任意一个 𝑛−1阶行列式，然后求出行列式的值，其绝对值就是这个图中<strong>生成树的个数</strong>。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/22/algorithm7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/22/algorithm7/" class="post-title-link" itemprop="url">Trie树</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-07-22 17:42:20 / Modified: 18:05:23" itemprop="dateCreated datePublished" datetime="2022-07-22T17:42:20+08:00">2022-07-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>字典树？前缀树？我是百变小樱—</p>
+<p>使用场景：词频统计、前缀匹配</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="Trie-树——整体架构："><a href="#Trie-树——整体架构：" class="headerlink" title="Trie 树——整体架构："></a>Trie 树——整体架构：</h3><p><img src="/2022/07/22/algorithm7/2012112521092438.png" alt="img"></p>
+<p>根结点不包含字符 除根结点外每一个子节点都包含一个字符</p>
+<p>从根节点到某一节点，路径上经过的字符连接起来，就是该节点对应的字符串</p>
+<p>很简单是不是！那让我们来看看怎么构建一棵Trie树吧= v =</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="Trie-树——实际操作："><a href="#Trie-树——实际操作：" class="headerlink" title="Trie 树——实际操作："></a>Trie 树——实际操作：</h3><h5 id="定义节点："><a href="#定义节点：" class="headerlink" title="定义节点："></a>定义节点：</h5><p>英文有26个字符，因此Trie树是一棵26叉树.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TrieNode</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  TrieNode[] childNodes;</span><br><span class="line">  </span><br><span class="line">	<span class="comment">// 用于词频统计</span></span><br><span class="line">	<span class="type">int</span> freq;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 记录该节点的字符</span></span><br><span class="line">	<span class="type">char</span> nodeChar;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 记录插入的编码id</span></span><br><span class="line">	unordered_set&lt;<span class="type">int</span>&gt; hashSet;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 初始化</span></span><br><span class="line">  <span class="built_in">TrieNode</span>() &#123;</span><br><span class="line">    childNodes = <span class="keyword">new</span> TrieNode[<span class="number">26</span>]; <span class="comment">// 26个字符，也就是26叉树</span></span><br><span class="line">    freq = <span class="number">0</span>;</span><br><span class="line">    hashSet = <span class="built_in">unordered_set</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h5 id="添加节点："><a href="#添加节点：" class="headerlink" title="添加节点："></a>添加节点：</h5><p>根据word的首字符决定添加到哪个子树中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AddTrieNode</span><span class="params">(TrieNode *root, string word, <span class="type">int</span> id)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (word.Length == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//求字符地址，方便将该字符放入到26叉树中的哪一叉中</span></span><br><span class="line">  <span class="type">int</span> k = word[<span class="number">0</span>] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//如果该叉树为空，则初始化</span></span><br><span class="line">  <span class="keyword">if</span> (root-&gt;childNodes[k] == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    root-&gt;childNodes[k] = <span class="keyword">new</span> <span class="built_in">TrieNode</span>();</span><br><span class="line">    <span class="comment">//记录下字符</span></span><br><span class="line">    root-&gt;childNodes[k]-&gt;nodeChar = word[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//该id途径的节点</span></span><br><span class="line">  root-&gt;childNodes[k]-&gt;hashSet.<span class="built_in">insert</span>(id);</span><br><span class="line">  string nextWord = word.<span class="built_in">substr</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//说明是最后一个字符，统计该词出现的次数</span></span><br><span class="line">  <span class="keyword">if</span> (nextWord.<span class="built_in">length</span>() == <span class="number">0</span>)</span><br><span class="line">    root-&gt;childNodes[k]-&gt;freq++;</span><br><span class="line">	</span><br><span class="line">  <span class="built_in">AddTrieNode</span>(root-&gt;childNodes[k], nextWord, id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="删除节点："><a href="#删除节点：" class="headerlink" title="删除节点："></a>删除节点：</h5><p>根据word的首字符决定到哪个子树中删除word</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">DeleteTrieNode</span><span class="params">(TrieNode *root, string word, <span class="type">int</span> id)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (word.<span class="built_in">length</span>() == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//求字符地址，方便将该字符放入到26叉树种的哪一颗树中</span></span><br><span class="line">	<span class="type">int</span> k = word[<span class="number">0</span>] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//如果该叉树为空,则说明没有找到要删除的点</span></span><br><span class="line">	<span class="keyword">if</span> (root-&gt;childNodes[k] == <span class="literal">nullptr</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	string nextWord = word.<span class="built_in">substr</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//如果是最后一个单词，则减去词频</span></span><br><span class="line">	<span class="keyword">if</span> (word.<span class="built_in">length</span>() == <span class="number">0</span> &amp;&amp; root-&gt;childNodes[k]-&gt;freq &gt; <span class="number">0</span>)</span><br><span class="line">		root-&gt;childNodes[k]-&gt;freq--;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//删除途经节点</span></span><br><span class="line">	root-&gt;childNodes[k]-&gt;hashSet.<span class="built_in">erase</span>(id);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">DeleteTrieNode</span>(root-&gt;childNodes[k], nextWord, id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="实战演练"><a href="#实战演练" class="headerlink" title="实战演练"></a>实战演练</h3><p>leetcode 745. <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/prefix-and-suffix-search/">前缀和后缀搜索</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">WordFilter</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">TrieNode</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="type">int</span> maxIndex;</span><br><span class="line">        vector&lt;<span class="keyword">struct</span> TrieNode *&gt; childs; <span class="comment">// 包括&#x27;&#123;&#x27;</span></span><br><span class="line">        <span class="built_in">TrieNode</span>() &#123;</span><br><span class="line">            childs = <span class="built_in">vector</span>&lt;<span class="keyword">struct</span> TrieNode *&gt;(<span class="number">27</span>, <span class="literal">nullptr</span>);</span><br><span class="line">            maxIndex = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">Insert</span><span class="params">(<span class="type">const</span> string&amp; word, <span class="type">int</span> index, <span class="type">int</span> cur)</span> </span>&#123;</span><br><span class="line">            maxIndex = <span class="built_in">max</span>(index, maxIndex);</span><br><span class="line">            <span class="keyword">if</span>(cur != word.<span class="built_in">length</span>()) &#123;</span><br><span class="line">                <span class="type">int</span> k = word[cur] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">                <span class="keyword">if</span>(childs[k] == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                    childs[k] = <span class="keyword">new</span> TrieNode;</span><br><span class="line">                &#125;</span><br><span class="line">                childs[k]-&gt;<span class="built_in">Insert</span>(word, index, cur+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">FindIndex</span><span class="params">(<span class="type">const</span> string&amp; prefix, <span class="type">int</span> cur)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur == prefix.<span class="built_in">length</span>()) &#123;</span><br><span class="line">                <span class="keyword">return</span> maxIndex;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="type">int</span> k = prefix[cur] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">                <span class="keyword">if</span>(childs[k] == <span class="literal">nullptr</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">return</span> childs[k]-&gt;<span class="built_in">FindIndex</span>(prefix, cur+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    TrieNode* head;</span><br><span class="line">    unordered_map&lt;string, <span class="type">int</span>&gt; umap;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">WordFilter</span>(vector&lt;string&gt;&amp; words) &#123;</span><br><span class="line">        head = <span class="keyword">new</span> TrieNode;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; words.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt;= words[i].<span class="built_in">length</span>(); j++) &#123;</span><br><span class="line">                head-&gt;<span class="built_in">Insert</span>(words[i].<span class="built_in">substr</span>(words[i].<span class="built_in">length</span>()-j)+<span class="string">&quot;&#123;&quot;</span>+words[i], i, <span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        umap = <span class="built_in">unordered_map</span>&lt;string, <span class="type">int</span>&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">f</span><span class="params">(string pref, string suff)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(umap.<span class="built_in">count</span>(suff+<span class="string">&quot;&#123;&quot;</span>+pref))</span><br><span class="line">            <span class="keyword">return</span> umap[suff+<span class="string">&quot;&#123;&quot;</span>+pref];</span><br><span class="line">        umap[suff+<span class="string">&quot;&#123;&quot;</span>+pref] = head-&gt;<span class="built_in">FindIndex</span>(suff+<span class="string">&quot;&#123;&quot;</span>+pref, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> umap[suff+<span class="string">&quot;&#123;&quot;</span>+pref];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your WordFilter object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * WordFilter* obj = new WordFilter(words);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;f(pref,suff);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/14/ipython/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -793,342 +1012,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/09/Linux-command/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/09/Linux-command/" class="post-title-link" itemprop="url">LINUX 基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-09 21:50:34" itemprop="dateCreated datePublished" datetime="2022-04-09T21:50:34+08:00">2022-04-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-10 00:11:23" itemprop="dateModified" datetime="2022-05-10T00:11:23+08:00">2022-05-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里记录了Linux系统常用的快捷键。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<ul>
-<li><p><code>TAB</code>：命令补全，Shell会根据可用的命令或文件路径自动将其补全。如果候选不唯一时，再按一下TAB会显示所有的可能补全方式。</p>
-</li>
-<li><p><code>Ctrl+C</code>：向当前正在运行的程序发送中断信号，迫使程序停止。发送的信号并不是SIGKILL 或 SIGTERM，而是SIGINT。</p>
-</li>
-<li><p><code>Ctrl+Z</code>：挂起当前程序到后台。</p>
-</li>
-<li><p><code>Ctrl+W</code>：删除光标前一个单词。</p>
-</li>
-<li><p><code>Ctrl+U</code>：删除整行。删除行首到光标处的所有内容。</p>
-</li>
-<li><p><code>Ctrl+S</code>：冻结窗口。当屏幕输出过快时用户可以冻结窗口来查看瞬时的输出。</p>
-</li>
-<li><p><code>Ctrl+Q</code>：取消冻结窗口。</p>
-</li>
-<li><p><code>Ctrl+D</code>：向命令行输入终止符EOF。</p>
-</li>
-<li><p><code>Ctrl+A</code>：将光标移动到行首。</p>
-</li>
-<li><p><code>Ctrl+E</code>：将光标移动到行尾。</p>
-</li>
-<li><p><code>Alt+F</code>：将光标向右移动一个单词。</p>
-</li>
-<li><p><code>Alt+B</code>：将光标向左移动一个单词。</p>
-</li>
-<li><p>方向键的上和下：查看命令历史的前一个/后一个指令。</p>
-</li>
-<li><p><code>Ctrl+R</code>：逆向查找历史执行过的命令。</p>
-</li>
-<li><p><code>./程序名</code>：运行当前目录下程序</p>
-</li>
-<li><p><code>echo $?</code>：查看上一条命令的返回值</p>
-</li>
-<li><p><code>命令 &gt; 输出文件</code>：重定向输出，把某命令输出到标准输出 (<code>stdout</code>) 的内容重定向到文件里</p>
-</li>
-<li><p><code>命令 &lt; 输入文件</code>：你希望把某个文件的内容作为某个命令的输入内容 (<code>stdin</code>)</p>
-</li>
-<li><p><code>命令1 | 命令2 | ... | 命令n</code>：管道，你希望运行多个命令, 将前一个命令的标准输出作为后一个命令的标准输入</p>
-</li>
-<li><p><code>cat</code>：cat命令是Linux中最常用的命令之一，<code>cat</code>命令的名称来自于con<strong>cat</strong>enate。它可以读取和连接文件，并将其内容写入到标准输出。如果未指定文件名或指定连字符<code>-</code>，则从标准输入读取内容。cat最常用于打印一个或多个文本文件的内容，通过将一个文件的内容附加到另一个文件的末尾来组合文件，以及创建新文件。</p>
-</li>
-<li><p><code>grep</code>：”print lines matching a pattern”，grep实现了输入的过滤。Linux grep 命令用于查找文件里符合条件的字符串。grep 指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设 grep 指令会把含有范本样式的那一列显示出来。若不指定任何文件名称，或是所给予的文件名为 <strong>-</strong>，则 grep 指令会从标准输入设备读取数据。</p>
-<p>e.g. $ grep test test* #查找前缀有“test”的文件包含“test”字符串的文件  </p>
-</li>
-<li><p><code>wc</code>：输出每个指定文件的行数、单词计数和字节数，如果指定了多于一个文件，继续给出所有相关数据的总计。如果没有指定文件，或者文件为”-“，则从标准输入读取数据。</p>
-</li>
-<li><p><code>xargs</code>：xargs是给命令传递参数的一个过滤器，也是组合多个命令的一个工具。xargs 可以将管道或标准输入（stdin）数据转换成命令行参数，也能够从文件的输出中读取数据。xargs 也可以将单行或多行文本输入转换为其他格式，例如多行变单行，单行变多行。xargs 默认的命令是 echo，这意味着通过管道传递给 xargs 的输入将会包含换行和空白，不过通过 xargs 的处理，换行和空白将被空格取代。xargs 是一个强有力的命令，它能够捕获一个命令的输出，然后传递给另外一个命令。之所以能用到这个命令，关键是由于很多命令不支持|管道来传递参数，而日常工作中有有这个必要，所以就有了 xargs 命令，通常和管道一起使用。</p>
-</li>
-<li><p><code>cd 目录</code>：切换到目录.</p>
-</li>
-<li><p><code>pwd</code>：输出当前目录.</p>
-</li>
-<li><p><code>ls</code>：输出当前目录下所有的文件.</p>
-</li>
-<li><p><code>mkdir 目录</code>：新建目录.</p>
-</li>
-<li><p><code>cp 源文件 目标</code>：把源文件复制到目标.</p>
-</li>
-<li><p><code>mv 源文件 目标</code>：把源文件移动到目标.</p>
-</li>
-<li><p><code>rm 文件</code>：删除文件.</p>
-</li>
-<li><p><code>man 命令</code>：显示命令的使用方法</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/Algorithm2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/Algorithm2/" class="post-title-link" itemprop="url">线段树1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-05 01:59:14" itemprop="dateCreated datePublished" datetime="2022-04-05T01:59:14+08:00">2022-04-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-14 01:10:28" itemprop="dateModified" datetime="2022-07-14T01:10:28+08:00">2022-07-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>算法笔记——线段树</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><p>它主要用于维护<strong>区间信息</strong>（要求满足结合律）。与树状数组相比，它可以实现$O(logn)$的<strong>区间修改</strong>，还可以同时支持<strong>多种操作</strong>（加、乘)，更具通用性。</p>
-<p>我们以leetcode 307. 区域和检索 - 数组可修改为例进行讲解。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="线段树的建立"><a href="#线段树的建立" class="headerlink" title="线段树的建立"></a>线段树的建立</h3><p>线段树是一棵<strong>平衡二叉树</strong>。母结点代表整个区间的和，越往下区间越小。注意，线段树的每个<strong>节点</strong>都对应一条<strong>线段（区间）</strong>，但并不保证所有的线段（区间）都是线段树的节点，这两者应当区分开。</p>
-<p>如果有一个数组[1,2,3,4,5]，那么它对应的线段树大概长这个样子：</p>
-<p><img src="/2022/04/05/Algorithm2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg" alt="img"></p>
-<p> 如何从数组建立一棵线段树？我们可以考虑<strong>递归</strong>地进行。</p>
-<p>代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">BuildTree</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l == r)</span><br><span class="line">        segmentTree[index] = nums[l];</span><br><span class="line">    <span class="keyword">else</span>&#123; <span class="comment">// 先求子节点</span></span><br><span class="line">        <span class="type">int</span> mid = ( l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">BuildTree</span>(nums, l, mid, <span class="number">2</span>*index); <span class="comment">// 左节点 </span></span><br><span class="line">        <span class="built_in">BuildTree</span>(nums, mid+<span class="number">1</span>, r, <span class="number">2</span>*index+<span class="number">1</span>); <span class="comment">// 右节点</span></span><br><span class="line">        segmentTree[index] = segmentTree[<span class="number">2</span>*index] + segmentTree[<span class="number">2</span>*index+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中nums是初始数组，index表示线段树中节点下标，l、r表示left和right，segmentTree[index]代表nums left到right之间的和。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="区间修改"><a href="#区间修改" class="headerlink" title="区间修改"></a>区间修改</h3><p>区间修改在某些题目中可能会涉及到所谓的<strong>懒标记</strong>，但leetcode这题中不会用到，我在这里就不过多赘述，有想了解的读者可以参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/106118909">这里</a>。</p>
-<p>更新时，我们是从最大的区间开始，递归向下处理。</p>
-<p>代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">UpdateTree</span><span class="params">(<span class="type">int</span> numIndex, <span class="type">int</span> change, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    segmentTree[index] += change;</span><br><span class="line">    <span class="keyword">if</span>(l == r)&#123; <span class="comment">// 就更新这个节点</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(numIndex &lt;= mid)</span><br><span class="line">            <span class="built_in">UpdateTree</span>(numIndex, change, l, mid, <span class="number">2</span>*index);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">UpdateTree</span>(numIndex, change, mid+<span class="number">1</span>, r, <span class="number">2</span>*index+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>numIndex表示修改的值的在nums中的下标，change表示修改后的值 - 原来的值。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="区间查询"><a href="#区间查询" class="headerlink" title="区间查询"></a>区间查询</h3><p>同样也是从最大的区间开始递归向下处理。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">QueryTree</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> cl, <span class="type">int</span> cr, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(cl &gt; r || cr &lt; l)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(cl &gt;= l &amp;&amp; cr &lt;= r)</span><br><span class="line">        <span class="keyword">return</span> segmentTree[index];</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="type">int</span> mid = (cl + cr) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">QueryTree</span>(l, r, cl, mid, <span class="number">2</span>*index) + <span class="built_in">QueryTree</span>(l, r, mid+<span class="number">1</span>, cr, <span class="number">2</span>*index+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>l，r表示要查询的区间，cl、cr表示segmentTree[index]代表的区间。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/Algorithm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/Algorithm/" class="post-title-link" itemprop="url">单调栈</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-05 01:45:35" itemprop="dateCreated datePublished" datetime="2022-04-05T01:45:35+08:00">2022-04-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-23 19:52:58" itemprop="dateModified" datetime="2022-04-23T19:52:58+08:00">2022-04-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>算法笔记：单调栈</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h3><p>单调栈分为单调递增栈和单调递减栈</p>
-<ol>
-<li>单调递增栈即栈内元素保持单调递增的栈</li>
-<li>同理单调递减栈即栈内元素保持单调递减的栈</li>
-</ol>
-<p>（下面都以单调递增栈为例）</p>
-<p>操作规则</p>
-<ol>
-<li>如果新的元素比栈顶元素大，就入栈</li>
-<li>如果新的元素较小，那就一直把栈内元素弹出来，直到栈顶比新元素小</li>
-</ol>
-<p>加入这样一个规则之后，会有什么效果</p>
-<ol>
-<li><p>栈内的元素是递增的</p>
-</li>
-<li><p>当元素出栈时，说明这个新元素是出栈元素向后找第一个比其小的元素</p>
-</li>
-</ol>
-<p>单调栈的代码模板</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; l; i++)&#123; <span class="comment">// 单调栈求右边第一个比它小的</span></span><br><span class="line">    <span class="keyword">if</span>(st.<span class="built_in">empty</span>() || heights[st.<span class="built_in">top</span>()] &lt;= heights[i])</span><br><span class="line">        st.<span class="built_in">push</span>(i);</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; heights[st.<span class="built_in">top</span>()] &gt; heights[i])&#123;</span><br><span class="line">            rightMax[st.<span class="built_in">top</span>()] = i;</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        st.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="leetcode-84-柱状图中最大的矩形"><a href="#leetcode-84-柱状图中最大的矩形" class="headerlink" title="leetcode 84. 柱状图中最大的矩形"></a>leetcode 84. 柱状图中最大的矩形</h4><p><img src="/2022/04/05/Algorithm/image-20220405015454265.png" alt="image-20220405015454265"></p>
-<p> 给定 <em>n</em> 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
-<p>思路：</p>
-<ol>
-<li><p>利用单调栈求出heights[i]左边第一个比它矮的矩形的index</p>
-</li>
-<li><p>利用单调栈求出heights[i]右边第一个比它矮的矩形的index</p>
-</li>
-<li><p>则如果以heights[i]为高度的矩形面积最大为S(i) = (rightMax[i] - leftMax[i] - 1) * heights[i]</p>
-</li>
-<li><p>遍历数组求出每个S(i)，最大值即为柱状图中最大矩形</p>
-</li>
-</ol>
-<p>代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">largestRectangleArea</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; heights)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 单调栈</span></span><br><span class="line">        <span class="type">int</span> l = heights.<span class="built_in">size</span>();</span><br><span class="line">        stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">rightMax</span><span class="params">(l, <span class="number">0</span>)</span></span>; <span class="comment">// 右边第一个比它小的</span></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">leftMax</span><span class="params">(l, <span class="number">0</span>)</span></span>; <span class="comment">// 左边第一个比它小的</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; l; i++)&#123; <span class="comment">// 单调栈求rightMax</span></span><br><span class="line">            <span class="keyword">if</span>(st.<span class="built_in">empty</span>() || heights[st.<span class="built_in">top</span>()] &lt;= heights[i])</span><br><span class="line">                st.<span class="built_in">push</span>(i);</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; heights[st.<span class="built_in">top</span>()] &gt; heights[i])&#123;</span><br><span class="line">                    rightMax[st.<span class="built_in">top</span>()] = i;</span><br><span class="line">                    st.<span class="built_in">pop</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                st.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            rightMax[st.<span class="built_in">top</span>()] = l;</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--)&#123; <span class="comment">// 单调栈求leftMax</span></span><br><span class="line">            <span class="keyword">if</span>(st.<span class="built_in">empty</span>() || heights[st.<span class="built_in">top</span>()] &lt;= heights[i])</span><br><span class="line">                st.<span class="built_in">push</span>(i);</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; heights[st.<span class="built_in">top</span>()] &gt; heights[i])&#123;</span><br><span class="line">                    leftMax[st.<span class="built_in">top</span>()] = i;</span><br><span class="line">                    st.<span class="built_in">pop</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                st.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            leftMax[st.<span class="built_in">top</span>()] = <span class="number">-1</span>;</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; l; i++)&#123;</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, (rightMax[i] - leftMax[i] - <span class="number">1</span>) * heights[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1198,7 +1081,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
