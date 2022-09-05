@@ -145,6 +145,151 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/05/algorithm11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/05/algorithm11/" class="post-title-link" itemprop="url">阶乘中末尾0的个数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-09-05 15:23:12 / Modified: 15:32:12" itemprop="dateCreated datePublished" datetime="2022-09-05T15:23:12+08:00">2022-09-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>阶乘末尾的0是由于阶乘中的2*5=10得到的，且易知任意阶乘中质因子2的个数一定比质因子5多。</p>
+<p>因此我们只要计算阶乘中质因子5的个数即可：令zeta(x)为x！中末尾0的个数，则：</p>
+<p>zeta(x) = $\sum_{i=1}^x\sum_{j=1}i\%(5^j)==0$</p>
+<p>也可以对这个式子进行简化：我们知道x!中有x//5个数可以被5整除（有1个质因子5），有x//25个数可以被25整除（有2个质因子5）…，所以zeta(x)可以表示为：</p>
+<p>zeta(x) = $\sum_{i=1}x//(5^i)$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/05/algorithm-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/05/algorithm-10/" class="post-title-link" itemprop="url">二叉树的序列化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-09-05 15:18:16 / Modified: 15:47:38" itemprop="dateCreated datePublished" datetime="2022-09-05T15:18:16+08:00">2022-09-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>有的时候题目需要我们判断相同的二叉树（树的结构相同，且对应节点值也相同）</p>
+<p>一种判断二叉树的方法就是将二叉树转化为字符串序列，并且确保：不同的二叉树一定转化为不同的字符串序列，相同的二叉树一定转化为相同的字符串序列。</p>
+<p>将二叉树转化为字符串序列有两种方法：</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="方法1：层序遍历"><a href="#方法1：层序遍历" class="headerlink" title="方法1：层序遍历"></a>方法1：层序遍历</h3><p>分为广搜和深搜，深搜也分为前序、中序和后序。</p>
+<p>这里要注意的是，和普通的搜索不同，我们遍历的时候如果一个节点的左右子树都为空，我们依然要把None节点遍历进去。</p>
+<p>以前序搜索为例，讲解如何根据序列化的结果返回到二叉树：</p>
+<p>遍历到节点，若是None，则返回空子树，否则之后的遍历先构建其左子树，再构建其右子树。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="方法2-括号表示编码-递归下降解码"><a href="#方法2-括号表示编码-递归下降解码" class="headerlink" title="方法2: 括号表示编码+递归下降解码"></a>方法2: 括号表示编码+递归下降解码</h3><p>我们也可以这样表示一颗二叉树：</p>
+<p>如果当前的树为空，则表示为 X<br>如果当前的树不为空，则表示为 (<LEFT_SUB_TREE>)CUR_NUM(<RIGHT_SUB_TREE>)，其中：</RIGHT_SUB_TREE></LEFT_SUB_TREE></p>
+<p><LEFT_SUB_TREE> 是左子树序列化之后的结果</LEFT_SUB_TREE></p>
+<p><RIGHT_SUB_TREE> 是右子树序列化之后的结果<br>CUR_NUM 是当前节点的值。</RIGHT_SUB_TREE></p>
+<p>如何根据序列化的结果返回到二叉树呢：我们可以推导出这样的巴科斯范式(BNF)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T -&gt; (T) num (T) | X</span><br></pre></td></tr></table></figure>
+<p>这是一个LL(1)文法，所以可以设计一个递归函数解析序列化的结果，并返回一棵二叉树</p>
+<p><br></p>
+<p><br></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/22/algorithm9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -825,197 +970,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/26/Algorithm4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/26/Algorithm4/" class="post-title-link" itemprop="url">水塘抽样</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-26 00:02:24" itemprop="dateCreated datePublished" datetime="2022-04-26T00:02:24+08:00">2022-04-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-21 03:20:59" itemprop="dateModified" datetime="2022-05-21T03:20:59+08:00">2022-05-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>水塘抽样用于在大数据流中的随机抽样问题，即：<strong>当内存无法加载全部数据时，如何从包含未知大小的数据流中随机选取k个数据，并且要保证每个数据被抽取到的概率相等</strong>。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="k-1"><a href="#k-1" class="headerlink" title="k = 1"></a>k = 1</h3><p>我们假设数据中有N个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{1}{N}$。</p>
-<p>那么我们可以：遇到第i个数，我们以$\frac{1}{i}$的概率保留它。</p>
-<p>则$p(i) = \frac{1}{i} (1-\frac{1}{i+1})  (1-\frac{1}{i+2})  …  (1 - \frac{1}{n}) = \frac{1}{i}  \frac{i}{i+1}  …  \frac{n-1}{n} = \frac{1}{n}$。</p>
-<p>所以只要采取这种策略，我们只要遍历一边数据就可以得到采样值，并且保证所有数被选取的概率为$\frac{1}{N}$。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="k-gt-1"><a href="#k-gt-1" class="headerlink" title="k &gt; 1"></a>k &gt; 1</h3><p>同上，我们依然假设数据中有K个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{k}{N}$。</p>
-<p>那么我们可以：对前k个数，保留下来的概率为1；对第i (i&gt;k)个数，我们以$\frac{k}{i}$的概率保留它，并且若保留了第i个数，我们以$\frac{1}{k}$的概率对前面已经选择的k个数选择任意一个进行替换。</p>
-<p>证明如下：</p>
-<p>对第k+1个数，我们以$\frac{k}{k+1}$的概率保留它，那么前k个数倍保留的概率为$\frac{1}{k+1} + \frac{k}{k+1} * \frac{k-1}{k} = \frac{k}{k+1}$</p>
-<p>对第k+2个数，我们以$\frac{k}{k+2}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{k+1}  (\frac{2}{k+2} + \frac{k}{k+2} * \frac{k-1}{k}) = \frac{k}{k+2}$</p>
-<p>…</p>
-<p>对第i个数，我们以$\frac{k}{i}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{i-1}  (\frac{i-k}{i} + \frac{k}{i} * \frac{k-1}{k}) = \frac{k}{i}$</p>
-<p>证毕。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/23/algorithm3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/23/algorithm3/" class="post-title-link" itemprop="url">凸包算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-23 18:58:53 / Modified: 19:55:39" itemprop="dateCreated datePublished" datetime="2022-04-23T18:58:53+08:00">2022-04-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里介绍三种凸包算法：$ \text { Jarvis } $算法、$ \text { Graham } $ 算法、 $ \text { Andrew } $算法。 </p>
-<p>使用的例题为<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/erect-the-fence/">leetcode-587：安装栅栏</a>。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="向量叉乘Cross"><a href="#向量叉乘Cross" class="headerlink" title="向量叉乘Cross"></a>向量叉乘Cross</h3><p>模长：（在这里θ表示两向量之间的夹角（共起点的前提下）（0°≤θ≤180°），它位于这两个矢量所定义的平面上。）</p>
-<p><img src="/2022/04/23/algorithm3/image-20220423190344111.png" alt="image-20220423190344111"></p>
-<p>方向：a向量与b向量的向量积的方向与这两个向量所在平面垂直，且遵守右手定则。</p>
-<p>坐标运算：</p>
-<p>设$a = (a_x,a_y,a_z),b = (b_x,b_y,b_z)$,<strong>i,j,k</strong>分别是X，Y，Z轴方向的单位向量。则：</p>
-<p>$a \times b = (a_yb_z-a_zb_y)i+(a_xb_z-a_zb_x)j+(a_xb_y-a_yb_x)k$</p>
-<p>利用三阶行列式表示如下：</p>
-<p>$det$$\left[ \begin{matrix} i &amp; j &amp; k\\ a_x &amp; a_y &amp; a_z \\ b_x &amp; b_y &amp; b_z \end{matrix} \right] \tag{3} $</p>
-<p>我们将三维坐标运算转移到二维，则$a_z=b_z = 0$：</p>
-<p>$a \times b = (a_xb_y-a_yb_x)k$</p>
-<p>若$a_xb_y-a_yb_x &gt; 0$，则k为正方向，从a逆时针转&lt;180度可得到b。否则k为负方向，从a顺时针转&lt;180度可得到b。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="texttt-Jarvis-算法"><a href="#texttt-Jarvis-算法" class="headerlink" title="$\texttt{Jarvis}$算法"></a>$\texttt{Jarvis}$算法</h3><p>首先必须要从凸包上的某一点开始，比如从给定点集中最左边的点开始，例如最左的一点 $A_1$。然后选择$ A_{2}$点使得所有点都在向量 $\vec{A_{1}A_{2}}  $的左方或者右方，我们每次选择左方，需要比较所有点以$ A_{1}$为原点的极坐标角度。然后以 $A_{2}$为原点，重复这个步骤，依次找到 $A_{3},A_{4},\ldots,A_{k}$。<br>给定原点 p，如何找到点 q，满足其余的点 r均在向量 $\vec{pq} $的左边?我们使用上面介绍的「向量叉积」来进行判别。为了找到点 q，我们使用函数$ \texttt{cross}()$，这个函数有 3 个参数，分别是当前凸包上的点 p，下一个会加到凸包里的点 q，其他点空间内的任何一个点 r，通过计算向量 $\vec{pq},\vec{qr} $的叉积来判断旋转方向，如果剩余所有的点 r 均满足在向量$ \vec{pq} $  的左边，则此时我们将 q 加入凸包中。</p>
-<p>我们遍历所有点 r，找到对于点 p 来说逆时针方向最靠外的点 q，把它加入凸包。如果存在 2 个点相对点 p 在同一条线上，我们应当将 q 和 p 同一线段上的边界点都考虑进来，此时需要进行标记，防止重复添加。</p>
-<p>通过这样，我们不断将凸包上的点加入，直到回到了开始的点。</p>
-<p>C++代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cross</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp; p, vector&lt;<span class="type">int</span>&gt; &amp; q, vector&lt;<span class="type">int</span>&gt; &amp; r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (q[<span class="number">0</span>] - p[<span class="number">0</span>]) * (r[<span class="number">1</span>] - q[<span class="number">1</span>]) - (q[<span class="number">1</span>] - p[<span class="number">1</span>]) * (r[<span class="number">0</span>] - q[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">outerTrees</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; trees) &#123;</span><br><span class="line">        <span class="type">int</span> n = trees.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> trees;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> leftMost = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (trees[i][<span class="number">0</span>] &lt; trees[leftMost][<span class="number">0</span>]) &#123;</span><br><span class="line">                leftMost = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">visit</span><span class="params">(n, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> p = leftMost;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="type">int</span> q = (p + <span class="number">1</span>) % n;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> r = <span class="number">0</span>; r &lt; n; r++) &#123;</span><br><span class="line">                <span class="comment">/* 如果 r 在 pq 的右侧，则 q = r */</span> </span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">cross</span>(trees[p], trees[q], trees[r]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    q = r;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">/* 是否存在点 i, 使得 p 、q 、i 在同一条直线上 */</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (visit[i] || i == p || i == q) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">cross</span>(trees[p], trees[q], trees[i]) == <span class="number">0</span>) &#123;</span><br><span class="line">                    res.<span class="built_in">emplace_back</span>(trees[i]);</span><br><span class="line">                    visit[i] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>  (!visit[q]) &#123;</span><br><span class="line">                res.<span class="built_in">emplace_back</span>(trees[q]);</span><br><span class="line">                visit[q] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            p = q;</span><br><span class="line">        &#125; <span class="keyword">while</span> (p != leftMost);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="texttt-Graham-算法"><a href="#texttt-Graham-算法" class="headerlink" title="$\texttt{Graham}$算法"></a>$\texttt{Graham}$算法</h3><p>这个方法的具体实现为：首先选择一个凸包上的初始点$ \textit{bottom}$。我们选择 y 坐标最小的点为起始点，我们可以肯定$ \textit{bottom}$ 一定在凸包上，将给定点集按照相对的以$ \textit{bottom}$为原点的极角大小进行排序。</p>
-<p>这一排序过程大致给了我们在逆时针顺序选点时候的思路。为了将点排序，我们使用上一方法使用过的函数$ \texttt{cross} $。极角顺序更小的点排在数组的前面。如果有两个点相对于点$ \textit{bottom} $的极角大小相同，则按照与点 $\textit{bottom}$的距离排序。</p>
-<p>我们还需要考虑另一种重要的情况，如果共线的点在凸壳的最后一条边上，我们需要从距离初始点最远的点开始考虑起。所以在将数组排序后，我们从尾开始遍历有序数组并将共线且朝有序数组尾部的点反转顺序，因为这些点是形成凸壳过程中尾部的点，所以在经过了这些处理以后，我们得到了求凸壳时正确的点的顺序。</p>
-<p>现在我们从有序数组最开始两个点开始考虑。我们将这条线上的点放入栈中。然后我们从第三个点开始遍历有序数组$ \textit{trees}$。如果当前点与栈顶的点相比前一条线是一个「左拐」或者是同一条线段上，我们都将当前点添加到栈顶，表示这个点暂时被添加到凸壳上。</p>
-<p>检查左拐或者右拐使用的还是$ \texttt{cross}$ 函数。对于向量$ \vec{pq},\vec{qr}$ ，计算向量的叉积 $\texttt{cross}(p,q,r) = \vec{pq} \times \vec{qr}$，如果叉积小于 0，可以知道向量$ \vec{pq},\vec{qr} $ 顺时针旋转，则此时向右拐；如果叉积大于 0，可以知道向量 $\vec{pq},\vec{qr} $逆时针旋转，表示是左拐；如果叉积等于 0，则p,q,r 在同一条直线上。</p>
-<p>如果当前点与上一条线之间的关系是右拐的，说明上一个点不应该被包括在凸壳里，因为它在边界的里面，所以我们将它从栈中弹出并考虑倒数第二条线的方向。重复这一过程，弹栈的操作会一直进行，直到我们当前点在凸壳中出现了右拐。这表示这时凸壳中只包括边界上的点而不包括边界以内的点。在所有点被遍历了一遍以后，栈中的点就是构成凸壳的点。</p>
-<p>C++代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cross</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; p, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; q, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (q[<span class="number">0</span>] - p[<span class="number">0</span>]) * (r[<span class="number">1</span>] - q[<span class="number">1</span>]) - (q[<span class="number">1</span>] - p[<span class="number">1</span>]) * (r[<span class="number">0</span>] - q[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">distance</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; p, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (p[<span class="number">0</span>] - q[<span class="number">0</span>]) * (p[<span class="number">0</span>] - q[<span class="number">0</span>]) + (p[<span class="number">1</span>] - q[<span class="number">1</span>]) * (p[<span class="number">1</span>] - q[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">outerTrees</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; &amp;trees) &#123;</span><br><span class="line">        <span class="type">int</span> n = trees.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> trees;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> bottom = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">/* 找到 y 最小的点 bottom*/</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (trees[i][<span class="number">1</span>] &lt; trees[bottom][<span class="number">1</span>]) &#123;</span><br><span class="line">                bottom = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">swap</span>(trees[bottom], trees[<span class="number">0</span>]);</span><br><span class="line">        <span class="comment">/* 以 bottom 原点，按照极坐标的角度大小进行排序 */</span></span><br><span class="line">        <span class="built_in">sort</span>(trees.<span class="built_in">begin</span>() + <span class="number">1</span>, trees.<span class="built_in">end</span>(), [&amp;](<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; a, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; b) &#123;</span><br><span class="line">            <span class="type">int</span> diff = <span class="built_in">cross</span>(trees[<span class="number">0</span>], a, b) - <span class="built_in">cross</span>(trees[<span class="number">0</span>], b, a);</span><br><span class="line">            <span class="keyword">if</span> (diff == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">distance</span>(trees[<span class="number">0</span>], a) &lt; <span class="built_in">distance</span>(trees[<span class="number">0</span>], b);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> diff &gt; <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">/* 对于凸包最后且在同一条直线的元素按照距离从小到大进行排序 */</span></span><br><span class="line">        <span class="type">int</span> r = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (r &gt;= <span class="number">0</span> &amp;&amp; <span class="built_in">cross</span>(trees[<span class="number">0</span>], trees[n - <span class="number">1</span>], trees[r]) == <span class="number">0</span>) &#123;</span><br><span class="line">            r--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> l = r + <span class="number">1</span>, h = n - <span class="number">1</span>; l &lt; h; l++, h--) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(trees[l], trees[h]);</span><br><span class="line">        &#125;</span><br><span class="line">        stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">        st.<span class="built_in">emplace</span>(<span class="number">0</span>);</span><br><span class="line">        st.<span class="built_in">emplace</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="type">int</span> top = st.<span class="built_in">top</span>();</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="comment">/* 如果当前元素与栈顶的两个元素构成的向量顺时针旋转，则弹出栈顶元素 */</span></span><br><span class="line">            <span class="keyword">while</span> (!st.<span class="built_in">empty</span>() &amp;&amp; <span class="built_in">cross</span>(trees[st.<span class="built_in">top</span>()], trees[top], trees[i]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                top = st.<span class="built_in">top</span>();</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            st.<span class="built_in">emplace</span>(top);</span><br><span class="line">            st.<span class="built_in">emplace</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">while</span> (!st.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(trees[st.<span class="built_in">top</span>()]);</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="texttt-Andrew-算法"><a href="#texttt-Andrew-算法" class="headerlink" title="$\texttt{Andrew}$算法"></a>$\texttt{Andrew}$算法</h3><p>Andrew 使用单调链算法，该算法与Graham 扫描算分类似。它们主要的不同点在于凸壳上点的顺序。与Graham 扫描算法按照点计较顺序排序不同，我们按照点的 x 坐标排序，如果两个点又相同的 x 坐标，那么就按照它们的 y 坐标排序。显然排序后的最大值与最小值一定在凸包上，而且因为是凸多边形，我们如果从一个点出发逆时针走，轨迹总是「左拐」的，一旦出现右拐，就说明这一段不在凸包上，因此我们可以用一个单调栈来维护上下凸壳。</p>
-<p>仔细观察可以发现，最大值与最小值一定位于凸包的最左边与最右边，从左向右看，我们将凸壳考虑成 22 个子边界组成：上凸壳和下凸壳。下凸壳一定是从最小值一直「左拐」直到最大值，上凸壳一定是从最大值「左拐」到最小值，因此我们首先升序枚举求出下凸壳，然后降序求出上凸壳。<br>我们首先将最初始的两个点添加到凸壳中，然后遍历排好序的 $\textit{trees}$ 数组。对于每个新的点，我们检查当前点是否在最后两个点的逆时针方向上，轨迹是否是左拐。如果是的话，当前点直接被压入凸壳 $\textit{hull}$ 中，$\textit{cross}$返回的结果为正数；如果不是的话，$\textit{cross}$返回的结果为负数，我们可以知道栈顶的元素在凸壳里面而不是凸壳边上。我们继续从$ \textit{hull}$中弹出元素直到当前点相对于栈顶的两个点的逆时针方向上。</p>
-<p>这个方法中，我们不需要显式地考虑共线的点，因为这些点已经按照 x 坐标排好了序。所以如果有共线的点，它们已经被隐式地按正确顺序考虑了。通过这样，我们会一直遍历到 x 坐标最大的点为止。但是凸壳还没有完全求解出来。目前求解出来的部分只包括凸壳的下半部分。现在我们需要求出凸壳的上半部分。</p>
-<p>我们继续找下一个逆时针的点并将不在边界上的点从栈中弹出，但这次我们遍历的顺序是按照 x 坐标从大到小，我们只需要从后往前遍历有序数组$ \textit{trees}$即可。我们将新的上凸壳的值添加到之前的 $\textit{hull}$数组中。最后$ \textit{hull}$数组返回了我们需要的边界上的点。需要注意的是，由于我们需要检测上凸壳最后加入的点是否合法，此时需要再次插入最左边的点$ textit{hull}[0]$ 进行判别。</p>
-<p>C++代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cross</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; p, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; q, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (q[<span class="number">0</span>] - p[<span class="number">0</span>]) * (r[<span class="number">1</span>] - q[<span class="number">1</span>]) - (q[<span class="number">1</span>] - p[<span class="number">1</span>]) * (r[<span class="number">0</span>] - q[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">outerTrees</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; trees) &#123;</span><br><span class="line">        <span class="type">int</span> n = trees.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> trees;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 按照 x 大小进行排序，如果 x 相同，则按照 y 的大小进行排序 */</span></span><br><span class="line">        <span class="built_in">sort</span>(trees.<span class="built_in">begin</span>(), trees.<span class="built_in">end</span>(), [](<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; a, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp; b) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[<span class="number">0</span>] == b[<span class="number">0</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> a[<span class="number">1</span>] &lt; b[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">0</span>] &lt; b[<span class="number">0</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; hull;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">used</span><span class="params">(n, <span class="literal">false</span>)</span></span>;</span><br><span class="line">        <span class="comment">/* hull[0] 需要入栈两次，不进行标记 */</span></span><br><span class="line">        hull.<span class="built_in">emplace_back</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">/* 求出凸包的下半部分 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (hull.<span class="built_in">size</span>() &gt; <span class="number">1</span> &amp;&amp; <span class="built_in">cross</span>(trees[hull[hull.<span class="built_in">size</span>() - <span class="number">2</span>]], trees[hull.<span class="built_in">back</span>()], trees[i]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                used[hull.<span class="built_in">back</span>()] = <span class="literal">false</span>;</span><br><span class="line">                hull.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            used[i] = <span class="literal">true</span>;</span><br><span class="line">            hull.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> m = hull.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">/* 求出凸包的上半部分 */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!used[i]) &#123;</span><br><span class="line">                <span class="keyword">while</span> (hull.<span class="built_in">size</span>() &gt; m &amp;&amp; <span class="built_in">cross</span>(trees[hull[hull.<span class="built_in">size</span>() - <span class="number">2</span>]], trees[hull.<span class="built_in">back</span>()], trees[i]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    used[hull.<span class="built_in">back</span>()] = <span class="literal">false</span>;</span><br><span class="line">                    hull.<span class="built_in">pop_back</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                used[i] = <span class="literal">true</span>;</span><br><span class="line">                hull.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* hull[0] 同时参与凸包的上半部分检测，因此需去掉重复的 hull[0] */</span></span><br><span class="line">        hull.<span class="built_in">pop_back</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp; v : hull) &#123;</span><br><span class="line">            res.<span class="built_in">emplace_back</span>(trees[v]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1081,7 +1039,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

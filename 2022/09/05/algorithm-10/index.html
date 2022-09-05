@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="写在前面基尔霍夫矩阵树定理：可以方便的解决给定 n 个点 m 条边的无向图，求图的生成树个数的问题。    基尔霍夫矩阵：1 基本定义1）无向图 𝐺：给定 𝑛 个点，𝑚 条边的无向图，设点集为 𝑉，边集为 𝐸，则其记为 𝐺(𝑉,𝐸) 2）度数矩阵 𝐷[𝐺]：当 𝑖≠𝑗时，𝐷[𝑖][𝑗]&#x3D;0，当 𝑖&#x3D;𝑗 时，𝐷[𝑖][𝑗]&#x3D;点𝑣的度数 3）邻接矩阵 𝐴[">
+  <meta name="description" content="写在前面有的时候题目需要我们判断相同的二叉树（树的结构相同，且对应节点值也相同） 一种判断二叉树的方法就是将二叉树转化为字符串序列，并且确保：不同的二叉树一定转化为不同的字符串序列，相同的二叉树一定转化为相同的字符串序列。 将二叉树转化为字符串序列有两种方法：    方法1：层序遍历分为广搜和深搜，深搜也分为前序、中序和后序。 这里要注意的是，和普通的搜索不同，我们遍历的时候如果一个节点的左右子">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基尔霍夫矩阵">
-<meta property="og:url" content="http://example.com/2022/07/22/algorithm8/index.html">
+<meta property="og:title" content="二叉树的序列化">
+<meta property="og:url" content="http://example.com/2022/09/05/algorithm-10/index.html">
 <meta property="og:site_name" content="Legolas">
-<meta property="og:description" content="写在前面基尔霍夫矩阵树定理：可以方便的解决给定 n 个点 m 条边的无向图，求图的生成树个数的问题。    基尔霍夫矩阵：1 基本定义1）无向图 𝐺：给定 𝑛 个点，𝑚 条边的无向图，设点集为 𝑉，边集为 𝐸，则其记为 𝐺(𝑉,𝐸) 2）度数矩阵 𝐷[𝐺]：当 𝑖≠𝑗时，𝐷[𝑖][𝑗]&#x3D;0，当 𝑖&#x3D;𝑗 时，𝐷[𝑖][𝑗]&#x3D;点𝑣的度数 3）邻接矩阵 𝐴[">
+<meta property="og:description" content="写在前面有的时候题目需要我们判断相同的二叉树（树的结构相同，且对应节点值也相同） 一种判断二叉树的方法就是将二叉树转化为字符串序列，并且确保：不同的二叉树一定转化为不同的字符串序列，相同的二叉树一定转化为相同的字符串序列。 将二叉树转化为字符串序列有两种方法：    方法1：层序遍历分为广搜和深搜，深搜也分为前序、中序和后序。 这里要注意的是，和普通的搜索不同，我们遍历的时候如果一个节点的左右子">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-07-22T10:05:54.000Z">
-<meta property="article:modified_time" content="2022-07-22T10:13:24.540Z">
+<meta property="article:published_time" content="2022-09-05T07:18:16.000Z">
+<meta property="article:modified_time" content="2022-09-05T07:47:38.451Z">
 <meta property="article:author" content="Wang Xinhao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/07/22/algorithm8/">
+<link rel="canonical" href="http://example.com/2022/09/05/algorithm-10/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>基尔霍夫矩阵 | Legolas</title>
+  <title>二叉树的序列化 | Legolas</title>
   
 
 
@@ -151,7 +151,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/22/algorithm8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/05/algorithm-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -164,7 +164,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          基尔霍夫矩阵
+          二叉树的序列化
         </h1>
 
         <div class="post-meta">
@@ -175,7 +175,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-07-22 18:05:54 / Modified: 18:13:24" itemprop="dateCreated datePublished" datetime="2022-07-22T18:05:54+08:00">2022-07-22</time>
+              <time title="Created: 2022-09-05 15:18:16 / Modified: 15:47:38" itemprop="dateCreated datePublished" datetime="2022-09-05T15:18:16+08:00">2022-09-05</time>
             </span>
 
           
@@ -190,22 +190,28 @@
 
       
         <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>基尔霍夫矩阵树定理：可以方便的解决给定 n 个点 m 条边的无向图，求图的生成树个数的问题。</p>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>有的时候题目需要我们判断相同的二叉树（树的结构相同，且对应节点值也相同）</p>
+<p>一种判断二叉树的方法就是将二叉树转化为字符串序列，并且确保：不同的二叉树一定转化为不同的字符串序列，相同的二叉树一定转化为相同的字符串序列。</p>
+<p>将二叉树转化为字符串序列有两种方法：</p>
 <p><br></p>
 <p><br></p>
 <hr>
-<h3 id="基尔霍夫矩阵："><a href="#基尔霍夫矩阵：" class="headerlink" title="基尔霍夫矩阵："></a>基尔霍夫矩阵：</h3><h5 id="1-基本定义"><a href="#1-基本定义" class="headerlink" title="1 基本定义"></a>1 基本定义</h5><p>1）无向图 𝐺：给定 𝑛 个点，𝑚 条边的无向图，设点集为 𝑉，边集为 𝐸，则其记为 𝐺(𝑉,𝐸)</p>
-<p>2）度数矩阵 𝐷[𝐺]：当 𝑖≠𝑗时，𝐷[𝑖][𝑗]=0，当 𝑖=𝑗 时，𝐷[𝑖][𝑗]=点𝑣的度数</p>
-<p>3）邻接矩阵 𝐴[𝐺]：当 𝑣𝑖、𝑣𝑗 有边连接时，𝐴[𝑖][𝑗]=1，当 𝑣𝑖、𝑣𝑗 无边连接时，𝐴[𝑖][𝑗]=0</p>
-<p>4）基尔霍夫矩阵(Kirchhoff) 𝐾[𝐺]：也称拉普拉斯算子，其定义为 𝐾[𝐺]=𝐷[𝐺]−𝐴[𝐺]，即：𝐾[𝑖][𝑗]=𝐷[𝑖][𝑗]−𝐴[𝑖][𝑗]</p>
-<p><br></p>
-<h5 id="2-性质（看看就好）"><a href="#2-性质（看看就好）" class="headerlink" title="2 性质（看看就好）"></a>2 性质（看看就好）</h5><p>对于任意一个图 𝐺，其基尔霍夫矩阵 𝐾 具有以下性质：</p>
-<p>1.基尔霍夫矩阵 𝐾 的每一行或每一列上的元素和都是 0<br>2.基尔霍夫矩阵 𝐾 的行列式的值为 0<br>3.基尔霍夫矩阵 𝐾 的任意一个代数余子式值都相同<br>4.如果图 𝐺 不连通，基尔霍夫矩阵 𝐾 的任意主子式行列式值为 0<br>5.如果图 𝐺 是一棵树，基尔霍夫矩阵 𝐾 的任意一个 𝑛−1 阶主子式的行列式为 1</p>
+<h3 id="方法1：层序遍历"><a href="#方法1：层序遍历" class="headerlink" title="方法1：层序遍历"></a>方法1：层序遍历</h3><p>分为广搜和深搜，深搜也分为前序、中序和后序。</p>
+<p>这里要注意的是，和普通的搜索不同，我们遍历的时候如果一个节点的左右子树都为空，我们依然要把None节点遍历进去。</p>
+<p>以前序搜索为例，讲解如何根据序列化的结果返回到二叉树：</p>
+<p>遍历到节点，若是None，则返回空子树，否则之后的遍历先构建其左子树，再构建其右子树。</p>
 <p><br></p>
 <p><br></p>
 <hr>
-<h3 id="Matrix-Tree-定理："><a href="#Matrix-Tree-定理：" class="headerlink" title="Matrix-Tree 定理："></a>Matrix-Tree 定理：</h3><p><strong>对于已经得出的基尔霍夫矩阵，去掉其随意一行一列得出的矩阵的行列式，其绝对值为生成树的个数</strong></p>
-<p>因此，对于给定的图 𝐺，若要求其生成树个数，可以先求其基尔霍夫矩阵，然后随意取其任意一个 𝑛−1阶行列式，然后求出行列式的值，其绝对值就是这个图中<strong>生成树的个数</strong>。</p>
+<h3 id="方法2-括号表示编码-递归下降解码"><a href="#方法2-括号表示编码-递归下降解码" class="headerlink" title="方法2: 括号表示编码+递归下降解码"></a>方法2: 括号表示编码+递归下降解码</h3><p>我们也可以这样表示一颗二叉树：</p>
+<p>如果当前的树为空，则表示为 X<br>如果当前的树不为空，则表示为 (<LEFT_SUB_TREE>)CUR_NUM(<RIGHT_SUB_TREE>)，其中：</RIGHT_SUB_TREE></LEFT_SUB_TREE></p>
+<p><LEFT_SUB_TREE> 是左子树序列化之后的结果</LEFT_SUB_TREE></p>
+<p><RIGHT_SUB_TREE> 是右子树序列化之后的结果<br>CUR_NUM 是当前节点的值。</RIGHT_SUB_TREE></p>
+<p>如何根据序列化的结果返回到二叉树呢：我们可以推导出这样的巴科斯范式(BNF)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T -&gt; (T) num (T) | X</span><br></pre></td></tr></table></figure>
+<p>这是一个LL(1)文法，所以可以设计一个递归函数解析序列化的结果，并返回一棵二叉树</p>
+<p><br></p>
+<p><br></p>
 
     </div>
 
@@ -224,12 +230,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/22/algorithm7/" rel="prev" title="Trie树">
-      <i class="fa fa-chevron-left"></i> Trie树
+    <a href="/2022/07/22/algorithm9/" rel="prev" title="二项式反演">
+      <i class="fa fa-chevron-left"></i> 二项式反演
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/07/22/algorithm9/" rel="next" title="二项式反演">
-      二项式反演 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/09/05/algorithm11/" rel="next" title="阶乘中末尾0的个数">
+      阶乘中末尾0的个数 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -289,7 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E5%B0%94%E9%9C%8D%E5%A4%AB%E7%9F%A9%E9%98%B5%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">基尔霍夫矩阵：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="nav-number">2.0.1.</span> <span class="nav-text">1 基本定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%80%A7%E8%B4%A8%EF%BC%88%E7%9C%8B%E7%9C%8B%E5%B0%B1%E5%A5%BD%EF%BC%89"><span class="nav-number">2.0.2.</span> <span class="nav-text">2 性质（看看就好）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matrix-Tree-%E5%AE%9A%E7%90%86%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">Matrix-Tree 定理：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%951%EF%BC%9A%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">2.</span> <span class="nav-text">方法1：层序遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%952-%E6%8B%AC%E5%8F%B7%E8%A1%A8%E7%A4%BA%E7%BC%96%E7%A0%81-%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D%E8%A7%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">方法2: 括号表示编码+递归下降解码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
