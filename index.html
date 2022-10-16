@@ -145,6 +145,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/16/algorithm12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/16/algorithm12/" class="post-title-link" itemprop="url">种类并查集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-10-16 17:10:55 / Modified: 17:20:16" itemprop="dateCreated datePublished" datetime="2022-10-16T17:10:55+08:00">2022-10-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>并查集很简单，这里就不说了，就是同一个树只有一个根结点，并且树的深度为1，很好解决组队问题。</p>
+<p>这里我们讲一个并查集的应用：种类并查集</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="种类并查集"><a href="#种类并查集" class="headerlink" title="种类并查集"></a>种类并查集</h3><p>一般的并查集，维护的是具有连通性、传递性的关系，例如<strong>亲戚的亲戚是亲戚</strong>。但是，有时候，我们要维护另一种关系：<strong>敌人的敌人是朋友</strong>。种类并查集就是为了解决这个问题而诞生的。</p>
+<p>这里举两个例子你就懂了：</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>现在你要对一个队伍进行分组，分成人数任意的两组，其中队员之间存在敌对关系，有敌对关系的两个人不能在一个组中。</p>
+<p>假设有n个人，这时候，我们可以开一个2n大小的数组。对有敌对关系的a，b，我们merge(a, n+b)和merge(b, n+a)。也就是说对任意一个队员i，其和n+i连通的其他人都是敌对关系。</p>
+<p><br></p>
+<p>下一个例子，是食物链，A吃B，B吃C，C吃A。假设一共有n个动物，类似的，我们可以开一个3n大小的数组，对任意一个动物i，和n+i连通的其他动物都是它的捕食对象，而和2n+i连通的其他动物都是它的天敌。</p>
+<p><br></p>
+<p>是不是很通俗易懂呢！下面直接来简单实战一下。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/possible-bipartition/">leetcode 886. 可能的二分法</a></p>
+<p>给定一组 n 人（编号为 1, 2, …, n）， 我们想把每个人分进任意大小的两组。每个人都可能不喜欢其他人，那么他们不应该属于同一组。</p>
+<p>给定整数 n 和数组 dislikes ，其中 dislikes[i] = [ai, bi] ，表示不允许将编号为 ai 和  bi的人归入同一组。当可以用这种方法将所有人分进两组时，返回 true；否则返回 false。</p>
+<p>解答如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">possibleBipartition</span>(<span class="params">self, n: <span class="built_in">int</span>, dislikes: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="comment"># 种类并查集 敌人的敌人就是朋友</span></span><br><span class="line">        <span class="comment"># 使用两倍大小的数组</span></span><br><span class="line">        arr = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>*n+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">parent</span>(<span class="params">i</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> arr</span><br><span class="line">            <span class="keyword">if</span> arr[i] == i:</span><br><span class="line">                <span class="keyword">return</span> arr[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                arr[i] = parent(arr[i])</span><br><span class="line">                <span class="keyword">return</span> arr[i]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">merge</span>(<span class="params">a, b</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> arr</span><br><span class="line">            p1 = parent(a)</span><br><span class="line">            p2 = parent(b)</span><br><span class="line">            arr[p2] = p1</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> dislike <span class="keyword">in</span> dislikes:</span><br><span class="line">            merge(dislike[<span class="number">0</span>], n+dislike[<span class="number">1</span>])</span><br><span class="line">            merge(dislike[<span class="number">1</span>], n+dislike[<span class="number">0</span>])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">2</span>*n+<span class="number">1</span>):</span><br><span class="line">            arr[i] = parent(arr[i])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> arr[i] == arr[n+i]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/05/algorithm11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -874,102 +957,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/learnGit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/10/learnGit/" class="post-title-link" itemprop="url">git的学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-05-10 01:16:20 / Modified: 01:18:53" itemprop="dateCreated datePublished" datetime="2022-05-10T01:16:20+08:00">2022-05-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>借鉴了一位非常牛的学长的内容，并附上了一位大牛的教程，不懂得看这个就完事了。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>Git 是一个版本控制系统 (version control system, VCS). 什么是版本控制? 为什么需要做版本控制?</p>
-<p>想象你正在开发你的编译器, 你决定给你的编译器实现一个新的功能, 但添加这个功能需要修改大量之前的代码. 你一咬牙一狠心, 熬了个大夜, 终于把这个功能加完了, 编译时遇到的问题也都修好了. 你信心满满地打开 OJ 交了一发:</p>
-<p><em>“tmd, 一个测试用例都没过.”</em></p>
-<p>你坐在宿舍的椅子上, 窗户灌进阵阵冷风, 看着 WA 声一片的提交界面, 你的心早就凉了.</p>
-<p>“要是能回到加这个功能之前就好了.” 你想着. 但你没有粉色大猫猫, 也没有 SERN 的 LHC (和助手), 更没有时之盾牌, 那些过去的时间再也回不去了.</p>
-<p>不过, 不幸中的万幸, 你用 Git 管理了你的代码.</p>
-<p>你熟练地在命令行里敲下 <code>git reset xxx</code>, 瞬间, 一切回到了那天之前.</p>
-<p>一些你需要知道的基本内容:</p>
-<ul>
-<li><strong>初始化 Git 仓库:</strong> 在仓库目录中 <code>git init</code>.</li>
-<li><strong>忽略部分文件的更改:</strong> 在对应目录中放置 <code>.gitignore</code> 文件, 并在该文件中添加需要忽略的文件的规则.</li>
-<li><strong>查看仓库状态:</strong> <code>git status</code>.</li>
-<li><strong>暂存更改:</strong> <code>git add 文件名</code>, 或 <code>git add -A</code> 暂存全部更改.</li>
-<li><strong>提交更改:</strong> <code>git commit</code>, 此时会弹出默认编辑器并要求你输入提交信息. 也可以直接执行 <code>git commit -m &quot;提交信息&quot;</code>.</li>
-<li><strong>添加远程仓库:</strong> <code>git remote add 名称 仓库URL</code>.</li>
-<li><strong>推送本地提交到远程:</strong> <code>git push</code>.</li>
-<li><strong>查看所有提交记录:</strong> <code>git log</code>, 你可以从中看到某个提交的哈希值.</li>
-<li><strong>把仓库复位到某个提交的状态:</strong> <code>git reset 提交的哈希值</code>.</li>
-<li><strong>从当前提交新建分支并切换:</strong> <code>git checkout -b 分支名</code>.</li>
-<li><strong>切换到分支:</strong> <code>git checkout 分支名</code>.</li>
-<li><strong>删除分支:</strong> <code>git branch -D 分支名</code>.</li>
-</ul>
-<p>上面提到了 <code>.gitignore</code> 可以让 Git 忽略目录中某些文件, 且不让它们出现在 Git 仓库中. 这有什么用呢?</p>
-<p>你在开发过程中难免会产生一些 <strong>“只对你自己有用”</strong> 且 <strong>“不值得永久保留”</strong> 的东西. 比如你在开发的过程中希望写几个简单的输入来测试你的程序, 或者验证你程序里的某处是否写对了, 于是你新建了个名字叫 <code>test.txt</code> 的文件, 里面写了一些测试的内容, 然后你在本地调试的时候会让你的程序读取这个文件.</p>
-<p><code>test.txt</code> 显然只是个用来存放写一些只对你自己有用的临时内容的文件, 你不希望让 Git 每次都记录这个文件的更改 (因为没意义), 所以你可以把它写进 <code>.gitignore</code> 中, 来让 Git 忽略它.</p>
-<p>其他类似的情况还包括, 你使用 VS Code 或 IDEA 开发你的编译器, 这些代码编辑器/IDE 可能会在项目中生成一些配置文件 (<code>.vscode</code> 或 <code>.idea</code>), 这些文件通常也是不需要被 Git 记录的, 因为其中包含了你的一些个人配置.</p>
-<p>此外, 你还可能会使用代码生成器, 生成器读取一个描述生成规则的输入文件, 据此生成对应的代码. 比如在编译实践中, 你很可能会使用 Flex/Bison, 它们会根据 <code>.l</code>/<code>.y</code> 文件的内容, 生成 lexer 和 parser 的 C/C++ 文件和头文件.</p>
-<p>对于这种情况, 你应该<strong>只在 Git 中保留喂给生成器的输入文件</strong>, 而不应该保留生成器生成的代码. 因为只要你安装了代码生成器, 你总能根据这些输入文件重新生成代码, 在 Git 中记录生成的代码没什么意义, 有时还会出现问题. 比如你修改了生成器规则, 但你没更新生成后的代码, 导致提交评测后评测机拉到了错误的代码, 于是你的编译器过不了评测, 然后你看着规则描述百思不得其解, 一天就这么过去了.</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h3><p>廖雪峰（大爹）<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">创建版本库</a></p>
-<p><a target="_blank" rel="noopener" href="https://liaoxuefeng.gitee.io/resource.liaoxuefeng.com/git/git-cheat-sheet.pdf">Git Cheating Sheat</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1039,7 +1026,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
