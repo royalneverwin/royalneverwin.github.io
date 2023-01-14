@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="写在前面这里就不给推导了，直接上公式： $𝑓(𝑛)&#x3D;∑_{𝑖&#x3D;0}^n(−1)^𝑖C^i_n𝑔(𝑖)⇔𝑔(𝑛)&#x3D;∑_{𝑖&#x3D;0}^𝑛(−1)^𝑖C_n^i𝑓(𝑖)$">
+  <meta name="description" content="写在前面水塘抽样用于在大数据流中的随机抽样问题，即：当内存无法加载全部数据时，如何从包含未知大小的数据流中随机选取k个数据，并且要保证每个数据被抽取到的概率相等。    k &#x3D; 1我们假设数据中有N个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{1}{N}$。 那么我们可以：遇到第i个数，我们以$\frac{1}{i}$的概率保留它。 则$p(i) &#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二项式反演">
-<meta property="og:url" content="http://example.com/2022/07/22/algorithm9/index.html">
+<meta property="og:title" content="水塘抽样">
+<meta property="og:url" content="http://example.com/2022/04/26/algorithm-4/index.html">
 <meta property="og:site_name" content="Legolas">
-<meta property="og:description" content="写在前面这里就不给推导了，直接上公式： $𝑓(𝑛)&#x3D;∑_{𝑖&#x3D;0}^n(−1)^𝑖C^i_n𝑔(𝑖)⇔𝑔(𝑛)&#x3D;∑_{𝑖&#x3D;0}^𝑛(−1)^𝑖C_n^i𝑓(𝑖)$">
+<meta property="og:description" content="写在前面水塘抽样用于在大数据流中的随机抽样问题，即：当内存无法加载全部数据时，如何从包含未知大小的数据流中随机选取k个数据，并且要保证每个数据被抽取到的概率相等。    k &#x3D; 1我们假设数据中有N个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{1}{N}$。 那么我们可以：遇到第i个数，我们以$\frac{1}{i}$的概率保留它。 则$p(i) &#x3D;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-07-22T10:13:32.000Z">
-<meta property="article:modified_time" content="2022-07-22T10:41:51.175Z">
+<meta property="article:published_time" content="2022-04-25T16:02:24.000Z">
+<meta property="article:modified_time" content="2022-05-20T19:20:59.921Z">
 <meta property="article:author" content="Wang Xinhao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/07/22/algorithm9/">
+<link rel="canonical" href="http://example.com/2022/04/26/algorithm-4/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>二项式反演 | Legolas</title>
+  <title>水塘抽样 | Legolas</title>
   
 
 
@@ -151,7 +151,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/22/algorithm9/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/26/algorithm-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -164,7 +164,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          二项式反演
+          水塘抽样
         </h1>
 
         <div class="post-meta">
@@ -173,10 +173,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-07-22 18:13:32 / Modified: 18:41:51" itemprop="dateCreated datePublished" datetime="2022-07-22T18:13:32+08:00">2022-07-22</time>
+              <time title="Created: 2022-04-26 00:02:24" itemprop="dateCreated datePublished" datetime="2022-04-26T00:02:24+08:00">2022-04-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-05-21 03:20:59" itemprop="dateModified" datetime="2022-05-21T03:20:59+08:00">2022-05-21</time>
+              </span>
 
           
 
@@ -190,8 +196,25 @@
 
       
         <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里就不给推导了，直接上公式：</p>
-<p>$𝑓(𝑛)=∑_{𝑖=0}^n(−1)^𝑖C^i_n𝑔(𝑖)⇔𝑔(𝑛)=∑_{𝑖=0}^𝑛(−1)^𝑖C_n^i𝑓(𝑖)$</p>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>水塘抽样用于在大数据流中的随机抽样问题，即：<strong>当内存无法加载全部数据时，如何从包含未知大小的数据流中随机选取k个数据，并且要保证每个数据被抽取到的概率相等</strong>。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="k-1"><a href="#k-1" class="headerlink" title="k = 1"></a>k = 1</h3><p>我们假设数据中有N个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{1}{N}$。</p>
+<p>那么我们可以：遇到第i个数，我们以$\frac{1}{i}$的概率保留它。</p>
+<p>则$p(i) = \frac{1}{i} (1-\frac{1}{i+1})  (1-\frac{1}{i+2})  …  (1 - \frac{1}{n}) = \frac{1}{i}  \frac{i}{i+1}  …  \frac{n-1}{n} = \frac{1}{n}$。</p>
+<p>所以只要采取这种策略，我们只要遍历一边数据就可以得到采样值，并且保证所有数被选取的概率为$\frac{1}{N}$。</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="k-gt-1"><a href="#k-gt-1" class="headerlink" title="k &gt; 1"></a>k &gt; 1</h3><p>同上，我们依然假设数据中有K个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为$\frac{k}{N}$。</p>
+<p>那么我们可以：对前k个数，保留下来的概率为1；对第i (i&gt;k)个数，我们以$\frac{k}{i}$的概率保留它，并且若保留了第i个数，我们以$\frac{1}{k}$的概率对前面已经选择的k个数选择任意一个进行替换。</p>
+<p>证明如下：</p>
+<p>对第k+1个数，我们以$\frac{k}{k+1}$的概率保留它，那么前k个数倍保留的概率为$\frac{1}{k+1} + \frac{k}{k+1} * \frac{k-1}{k} = \frac{k}{k+1}$</p>
+<p>对第k+2个数，我们以$\frac{k}{k+2}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{k+1}  (\frac{2}{k+2} + \frac{k}{k+2} * \frac{k-1}{k}) = \frac{k}{k+2}$</p>
+<p>…</p>
+<p>对第i个数，我们以$\frac{k}{i}$的概率保留它，那么前k个被选择的数倍保留的概率为$\frac{k}{i-1}  (\frac{i-k}{i} + \frac{k}{i} * \frac{k-1}{k}) = \frac{k}{i}$</p>
+<p>证毕。</p>
 
     </div>
 
@@ -210,12 +233,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/22/algorithm8/" rel="prev" title="基尔霍夫矩阵">
-      <i class="fa fa-chevron-left"></i> 基尔霍夫矩阵
+    <a href="/2022/04/23/algorithm-3/" rel="prev" title="凸包算法">
+      <i class="fa fa-chevron-left"></i> 凸包算法
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/09/05/algorithm-10/" rel="next" title="二叉树的序列化">
-      二叉树的序列化 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/05/10/learnGit/" rel="next" title="git的学习">
+      git的学习 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -275,7 +298,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-1"><span class="nav-number">2.</span> <span class="nav-text">k &#x3D; 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-gt-1"><span class="nav-number">3.</span> <span class="nav-text">k &gt; 1</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -289,7 +312,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -321,7 +344,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -145,6 +145,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/learnGDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Wang Xinhao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Legolas">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/learnGDB/" class="post-title-link" itemprop="url">学习使用GDB/LLDB</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-05-10 01:19:38 / Modified: 01:21:34" itemprop="dateCreated datePublished" datetime="2022-05-10T01:19:38+08:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>同样借鉴了学长的教程&lt;^ _ ^&gt;</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="GDB-LLDB"><a href="#GDB-LLDB" class="headerlink" title="GDB/LLDB"></a>GDB/LLDB</h3><p>调试程序有几种方法:</p>
+<ul>
+<li><p><strong>硬看:</strong> 基本没啥用.</p>
+</li>
+<li><p><strong>print 大法:</strong> 对小问题有用, 但一旦问题复杂起来, 你将迷失在巨量的日志里, 大脑过载, 难以自拔.</p>
+</li>
+<li><p><strong>使用 IDE 提供的调试功能:</strong> 比较有用, 但也比较复杂. 而且有些情况你没法用 IDE 的调试器解决, 比如你的编译器生成的 RISC-V 程序在 QEMU 里运行的时候出现了段错误, 你需要调试 QEMU 里的那个程序.</p>
+</li>
+<li><p><strong>使用 GDB/LLDB 等调试器:</strong> 非常有用, 适用范围极广, 但相对较难上手.</p>
+</li>
+</ul>
+<p>一些你需要知道的基本内容:</p>
+<ul>
+<li><strong>编译带调试信息的 C/C++ 程序:</strong> <code>gcc/g++ -g -O0 ...</code>.</li>
+<li><strong>用调试器载入程序:</strong> <code>gdb/lldb 程序名</code>.</li>
+<li><strong>用调试器载入程序并指定启动参数:</strong> <code>gdb --args 程序名 参数 ...</code>, <code>lldb 程序名 -- 参数 ...</code>, 此时会进入调试器的命令行. 后续命令均需要在调试器的命令行中执行.</li>
+<li><strong>添加断点:</strong> <code>b 函数名</code>, <code>b 文件名:行号</code>.</li>
+<li><strong>删除断点:</strong> GDB: <code>d 断点编号</code>, LLDB: <code>br del 断点编号</code>.</li>
+<li><strong>查看所有断点:</strong> GDB: <code>info b</code>, LLDB: <code>br list</code>.</li>
+<li><strong>执行程序:</strong> <code>r</code>.</li>
+<li><strong>单步执行, 跳过函数:</strong> <code>n</code>.</li>
+<li><strong>单步执行, 进入函数:</strong> <code>s</code>.</li>
+<li><strong>继续执行直到断点/出错:</strong> <code>c</code>.</li>
+<li><strong>查看调用栈:</strong> <code>bt</code>.</li>
+<li><strong>切换调用栈:</strong> GDB: <code>frame 编号</code>, LLDB: <code>frame select 编号</code>.</li>
+<li><strong>暂停执行:</strong> <code>Ctrl + C</code>.</li>
+<li><strong>退出:</strong> <code>q</code> 或 <code>Ctrl + D</code>.</li>
+</ul>
+<p>一个例子:</p>
+<p>你写的编译器出现了段错误——这种问题使用 <code>print</code> 大法调试效率很低, 因为你很难知道你的编译器到底在何处出现了段错误, 进而无法得知应该在何处插入 <code>print</code>. 遇到这种情况, 不妨使用调试器载入程序并运行, 当程序出现段错误时, 调试器会停住并进入命令行供你操作. 此时你就可以使用 <code>bt</code> 查看调用栈, 定位出错的位置, 然后在合适的地方下断点, 并重新运行程序来进一步调试了.</p>
+<p><br></p>
+<p><br></p>
+<hr>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf">GDB Cheating Sheet</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nesono.com/sites/default/files/lldb%20cheat%20sheet.pdf">LLDB Cheating Sheet</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/learnGit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -241,7 +339,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/26/Algorithm4/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/26/algorithm-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -255,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/26/Algorithm4/" class="post-title-link" itemprop="url">水塘抽样</a>
+            <a href="/2022/04/26/algorithm-4/" class="post-title-link" itemprop="url">水塘抽样</a>
         </h2>
 
         <div class="post-meta">
@@ -325,7 +423,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/23/algorithm3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/23/algorithm-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -339,7 +437,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/23/algorithm3/" class="post-title-link" itemprop="url">凸包算法</a>
+            <a href="/2022/04/23/algorithm-3/" class="post-title-link" itemprop="url">凸包算法</a>
         </h2>
 
         <div class="post-meta">
@@ -371,7 +469,7 @@
 <p><br></p>
 <hr>
 <h3 id="向量叉乘Cross"><a href="#向量叉乘Cross" class="headerlink" title="向量叉乘Cross"></a>向量叉乘Cross</h3><p>模长：（在这里θ表示两向量之间的夹角（共起点的前提下）（0°≤θ≤180°），它位于这两个矢量所定义的平面上。）</p>
-<p><img src="/2022/04/23/algorithm3/image-20220423190344111.png" alt="image-20220423190344111"></p>
+<p><img src="/2022/04/23/algorithm-3/image-20220423190344111.png" alt="image-20220423190344111"></p>
 <p>方向：a向量与b向量的向量积的方向与这两个向量所在平面垂直，且遵守右手定则。</p>
 <p>坐标运算：</p>
 <p>设$a = (a_x,a_y,a_z),b = (b_x,b_y,b_z)$,<strong>i,j,k</strong>分别是X，Y，Z轴方向的单位向量。则：</p>
@@ -562,7 +660,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/Algorithm2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/algorithm-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -576,7 +674,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/05/Algorithm2/" class="post-title-link" itemprop="url">线段树1</a>
+            <a href="/2022/04/05/algorithm-2/" class="post-title-link" itemprop="url">线段树1</a>
         </h2>
 
         <div class="post-meta">
@@ -619,7 +717,7 @@
 <hr>
 <h3 id="线段树的建立"><a href="#线段树的建立" class="headerlink" title="线段树的建立"></a>线段树的建立</h3><p>线段树是一棵<strong>平衡二叉树</strong>。母结点代表整个区间的和，越往下区间越小。注意，线段树的每个<strong>节点</strong>都对应一条<strong>线段（区间）</strong>，但并不保证所有的线段（区间）都是线段树的节点，这两者应当区分开。</p>
 <p>如果有一个数组[1,2,3,4,5]，那么它对应的线段树大概长这个样子：</p>
-<p><img src="/2022/04/05/Algorithm2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg" alt="img"></p>
+<p><img src="/2022/04/05/algorithm-2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg" alt="img"></p>
 <p> 如何从数组建立一棵线段树？我们可以考虑<strong>递归</strong>地进行。</p>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">BuildTree</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l == r)</span><br><span class="line">        segmentTree[index] = nums[l];</span><br><span class="line">    <span class="keyword">else</span>&#123; <span class="comment">// 先求子节点</span></span><br><span class="line">        <span class="type">int</span> mid = ( l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">BuildTree</span>(nums, l, mid, <span class="number">2</span>*index); <span class="comment">// 左节点 </span></span><br><span class="line">        <span class="built_in">BuildTree</span>(nums, mid+<span class="number">1</span>, r, <span class="number">2</span>*index+<span class="number">1</span>); <span class="comment">// 右节点</span></span><br><span class="line">        segmentTree[index] = segmentTree[<span class="number">2</span>*index] + segmentTree[<span class="number">2</span>*index+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -657,7 +755,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/Algorithm/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/algorithm-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -671,7 +769,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/05/Algorithm/" class="post-title-link" itemprop="url">单调栈</a>
+            <a href="/2022/04/05/algorithm-1/" class="post-title-link" itemprop="url">单调栈</a>
         </h2>
 
         <div class="post-meta">
@@ -730,7 +828,7 @@
 <p><br></p>
 <p><br></p>
 <hr>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="leetcode-84-柱状图中最大的矩形"><a href="#leetcode-84-柱状图中最大的矩形" class="headerlink" title="leetcode 84. 柱状图中最大的矩形"></a>leetcode 84. 柱状图中最大的矩形</h4><p><img src="/2022/04/05/Algorithm/image-20220405015454265.png" alt="image-20220405015454265"></p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="leetcode-84-柱状图中最大的矩形"><a href="#leetcode-84-柱状图中最大的矩形" class="headerlink" title="leetcode 84. 柱状图中最大的矩形"></a>leetcode 84. 柱状图中最大的矩形</h4><p><img src="/2022/04/05/algorithm-1/image-20220405015454265.png" alt="image-20220405015454265"></p>
 <p> 给定 <em>n</em> 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
 <p>思路：</p>
 <ol>
@@ -1022,84 +1120,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/Markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Wang Xinhao">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Legolas">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/10/Markdown/" class="post-title-link" itemprop="url">Markdown高级技巧</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-10 23:11:16" itemprop="dateCreated datePublished" datetime="2022-03-10T23:11:16+08:00">2022-03-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-23 19:51:48" itemprop="dateModified" datetime="2022-04-23T19:51:48+08:00">2022-04-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这里记录我学习到的各种 <strong>markdown</strong> 小tricks。</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<h3 id="如何打出类似键盘按键的符号"><a href="#如何打出类似键盘按键的符号" class="headerlink" title="如何打出类似键盘按键的符号"></a>如何打出类似键盘按键的符号</h3><p>虽然这是markdown的一个高级技巧，但我更多的是用它打出键盘按键符号23333，属于是大炮打蚊子。</p>
-<p>我们要知道的是，markdown支持html元素。</p>
-<p>目前支持的html元素有：<code>&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt; &lt;br&gt;</code>等 </p>
-<p>但在这里，我们需要的是：<code>&lt;kbd&gt;</code>！！！</p>
-<p>方法如下吗，举个例子就行：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用 &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Alt&lt;/kbd&gt;+&lt;kbd&gt;Del&lt;/kbd&gt; 重启电脑</span><br></pre></td></tr></table></figure>
-<p>最终结果就是：</p>
-<p>使用 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd> 重启电脑</p>
-<p>是不是很神奇！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1169,7 +1189,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1201,7 +1221,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

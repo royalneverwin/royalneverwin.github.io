@@ -23,19 +23,19 @@
   <meta name="description" content="写在前面算法笔记——线段树    线段树它主要用于维护区间信息（要求满足结合律）。与树状数组相比，它可以实现$O(logn)$的区间修改，还可以同时支持多种操作（加、乘)，更具通用性。 我们以leetcode 307. 区域和检索 - 数组可修改为例进行讲解。    线段树的建立线段树是一棵平衡二叉树。母结点代表整个区间的和，越往下区间越小。注意，线段树的每个节点都对应一条线段（区间），但并不保">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线段树1">
-<meta property="og:url" content="http://example.com/2022/04/05/Algorithm2/index.html">
+<meta property="og:url" content="http://example.com/2022/04/05/algorithm-2/index.html">
 <meta property="og:site_name" content="Legolas">
 <meta property="og:description" content="写在前面算法笔记——线段树    线段树它主要用于维护区间信息（要求满足结合律）。与树状数组相比，它可以实现$O(logn)$的区间修改，还可以同时支持多种操作（加、乘)，更具通用性。 我们以leetcode 307. 区域和检索 - 数组可修改为例进行讲解。    线段树的建立线段树是一棵平衡二叉树。母结点代表整个区间的和，越往下区间越小。注意，线段树的每个节点都对应一条线段（区间），但并不保">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/04/05/Algorithm2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg">
+<meta property="og:image" content="http://example.com/2022/04/05/algorithm-2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg">
 <meta property="article:published_time" content="2022-04-04T17:59:14.000Z">
 <meta property="article:modified_time" content="2022-07-13T17:10:28.293Z">
 <meta property="article:author" content="Wang Xinhao">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/04/05/Algorithm2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg">
+<meta name="twitter:image" content="http://example.com/2022/04/05/algorithm-2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg">
 
-<link rel="canonical" href="http://example.com/2022/04/05/Algorithm2/">
+<link rel="canonical" href="http://example.com/2022/04/05/algorithm-2/">
 
 
 <script id="page-configurations">
@@ -153,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/Algorithm2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/algorithm-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -209,7 +209,7 @@
 <hr>
 <h3 id="线段树的建立"><a href="#线段树的建立" class="headerlink" title="线段树的建立"></a>线段树的建立</h3><p>线段树是一棵<strong>平衡二叉树</strong>。母结点代表整个区间的和，越往下区间越小。注意，线段树的每个<strong>节点</strong>都对应一条<strong>线段（区间）</strong>，但并不保证所有的线段（区间）都是线段树的节点，这两者应当区分开。</p>
 <p>如果有一个数组[1,2,3,4,5]，那么它对应的线段树大概长这个样子：</p>
-<p><img src="/2022/04/05/Algorithm2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg" alt="img"></p>
+<p><img src="/2022/04/05/algorithm-2/v2-5e9124a6147143e51cea46755e9a0398_r.jpg" alt="img"></p>
 <p> 如何从数组建立一棵线段树？我们可以考虑<strong>递归</strong>地进行。</p>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">BuildTree</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l == r)</span><br><span class="line">        segmentTree[index] = nums[l];</span><br><span class="line">    <span class="keyword">else</span>&#123; <span class="comment">// 先求子节点</span></span><br><span class="line">        <span class="type">int</span> mid = ( l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">BuildTree</span>(nums, l, mid, <span class="number">2</span>*index); <span class="comment">// 左节点 </span></span><br><span class="line">        <span class="built_in">BuildTree</span>(nums, mid+<span class="number">1</span>, r, <span class="number">2</span>*index+<span class="number">1</span>); <span class="comment">// 右节点</span></span><br><span class="line">        segmentTree[index] = segmentTree[<span class="number">2</span>*index] + segmentTree[<span class="number">2</span>*index+<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -246,7 +246,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/04/05/Algorithm/" rel="prev" title="单调栈">
+    <a href="/2022/04/05/algorithm-1/" rel="prev" title="单调栈">
       <i class="fa fa-chevron-left"></i> 单调栈
     </a></div>
       <div class="post-nav-item">
@@ -325,7 +325,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -357,7 +357,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
