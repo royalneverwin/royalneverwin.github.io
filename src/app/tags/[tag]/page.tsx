@@ -5,9 +5,9 @@ import { ArrowLeft, Tag } from 'lucide-react'
 import { Metadata } from 'next'
 
 interface TagPageProps {
-  params: {
+  params: Promise<{
     tag: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: TagPageProps): Promise<Metadata> {
-  const decodedTag = decodeURIComponent(params.tag)
+  const { tag } = await params
+  const decodedTag = decodeURIComponent(tag)
   
   return {
     title: `标签: ${decodedTag} - RoyalNeverWin`,
@@ -26,8 +27,9 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
   }
 }
 
-export default function TagPage({ params }: TagPageProps) {
-  const decodedTag = decodeURIComponent(params.tag)
+export default async function TagPage({ params }: TagPageProps) {
+  const { tag } = await params
+  const decodedTag = decodeURIComponent(tag)
   const posts = getPostsByTag(decodedTag)
 
   return (
@@ -67,7 +69,7 @@ export default function TagPage({ params }: TagPageProps) {
         ) : (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">
-              暂无标签为 "{decodedTag}" 的文章
+              暂无标签为 &ldquo;{decodedTag}&rdquo; 的文章
             </p>
           </div>
         )}

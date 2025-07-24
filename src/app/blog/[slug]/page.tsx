@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const post = await getPostData(params.slug)
+  const { slug } = await params
+  const post = await getPostData(slug)
   
   return {
     title: `${post.title} - RoyalNeverWin`,
@@ -33,7 +34,8 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const post = await getPostData(params.slug)
+  const { slug } = await params
+  const post = await getPostData(slug)
 
   return (
     <div className="bg-white min-h-screen">
