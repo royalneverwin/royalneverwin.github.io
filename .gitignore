@@ -15,7 +15,7 @@
 
 # next.js
 /.next/
-# /out/  # 注释掉这行，允许提交 out 目录
+/out/
 
 # production
 /build
