@@ -82,7 +82,7 @@ export default function Home() {
                 浏览 GitHub
               </a>
               <a 
-                href="mailto:your-email@example.com"
+                href="mailto:wangxinhao.pku@vip.163.com"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors font-medium"
               >
                 <Mail size={20} className="mr-2" />
@@ -182,7 +182,7 @@ export default function Home() {
               我相信技术的力量可以改变世界，也乐于通过开源项目和博客文章分享我的所学所感。
             </p>
             <a 
-              href="mailto:your-email@example.com"
+              href="mailto:wangxinhao.pku@vip.163.com"
               className="inline-block bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-lg"
             >
               和我聊聊

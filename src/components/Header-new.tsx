@@ -50,7 +50,7 @@ export default function Header() {
               <Github size={20} />
             </a>
             <a 
-              href="mailto:your-email@example.com" 
+              href="mailto:wangxinhao.pku@vip.163.com" 
               className="text-gray-500 hover:text-gray-700 transition-colors"
             >
               <Mail size={20} />
