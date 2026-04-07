@@ -1,27 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "RoyalNeverWin - 个人博客",
-  description: "一个记录技术学习、生活感悟和项目经验的个人博客",
-  keywords: "博客, 技术, 前端, Next.js, TypeScript",
-  authors: [{ name: "RoyalNeverWin" }],
+  title: "王新昊 | 3D 感知与模型效率",
+  description: "王新昊的个人网站，聚焦自动驾驶三维感知、模型量化、知识蒸馏、模型剪枝与工程化落地。",
+  keywords: "王新昊, 3D感知, 自动驾驶, 模型量化, 知识蒸馏, TensorRT, 北京大学",
+  authors: [{ name: "王新昊" }],
   openGraph: {
-    title: "RoyalNeverWin - 个人博客",
-    description: "一个记录技术学习、生活感悟和项目经验的个人博客",
+    title: "王新昊 | 3D 感知与模型效率",
+    description: "自动驾驶三维感知、模型压缩与工程化部署相关的个人主页与博客。",
     type: "website",
     locale: "zh_CN",
   },
@@ -34,9 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow">

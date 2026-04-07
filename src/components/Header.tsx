@@ -1,30 +1,32 @@
 import Link from 'next/link'
-import { Home, Book, Tag, Github, Mail } from 'lucide-react'
+import { Home, Book, FileText, Briefcase, Github, Mail } from 'lucide-react'
 
 export default function Header() {
   return (
-    <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 transition-colors duration-300">
+    <header className="sticky top-0 z-50 border-b border-[color:var(--line)] bg-[color:rgba(244,239,229,0.82)] backdrop-blur-xl transition-colors duration-300 dark:bg-[color:rgba(18,16,13,0.82)]">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo/标题 */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
-              <span className="text-white font-bold text-sm">R</span>
+          <Link href="/" className="group flex items-center space-x-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[var(--accent)] text-sm font-bold text-white transition-transform group-hover:-rotate-6">
+              王
             </div>
-            <span className="text-xl font-bold text-gray-900 dark:text-white">RoyalNeverWin</span>
+            <div>
+              <span className="block text-base font-semibold text-[var(--foreground)]">王新昊</span>
+              <span className="block text-xs tracking-[0.18em] text-[var(--muted)]">ROYALNEVERWIN</span>
+            </div>
           </Link>
 
-          {/* 导航菜单 - 桌面端 */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-7">
             {[
               { href: '/', label: '首页', icon: Home },
+              { href: '/#experience', label: '经历', icon: Briefcase },
+              { href: '/#publications', label: '论文', icon: FileText },
               { href: '/blog', label: '博客', icon: Book },
-              { href: '/tags', label: '标签', icon: Tag },
             ].map(({ href, label, icon: Icon }) => (
               <Link 
                 key={href}
                 href={href} 
-                className="flex items-center space-x-1 text-sm font-medium text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
+                className="flex items-center space-x-1 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
               >
                 <Icon size={16} />
                 <span>{label}</span>
@@ -32,20 +34,19 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* 社交链接 */}
           <div className="flex items-center space-x-4">
             <a 
               href="https://github.com/royalneverwin" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+              className="text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
               aria-label="GitHub"
             >
               <Github size={20} />
             </a>
             <a 
-              href="mailto:wangxinhao.pku@vip.163.com" 
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+              href="mailto:wangxinhao@pku.edu.cn" 
+              className="text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
               aria-label="Email"
             >
               <Mail size={20} />
