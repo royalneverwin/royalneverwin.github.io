@@ -34,6 +34,8 @@
 npm run build
 ```
 
+执行后会先由 Next.js 生成静态导出，再自动把产物同步到 `docs/`。
+
 ## 📝 写作指南
 
 ### 添加新文章
@@ -62,12 +64,12 @@ tags: ['标签1', '标签2']
 1. 修改 `src/`、`posts/` 等源码内容
 2. 本地执行 `npm run build` 验证静态导出
 3. 推送到 `master`
-4. GitHub Actions 自动构建，并将生成的 `out/` 发布到 GitHub Pages
+4. GitHub Actions 自动构建，并将生成的 `docs/` 发布到 GitHub Pages
 
 注意：
 
-- 不需要再手动把 `out/` 复制到 `docs/`
-- 如果页面内容没有变化，优先检查 Actions 是否仍在发布 `docs/` 而不是 `out/`
+- `npm run build` 会自动把静态导出同步到 `docs/`
+- 本地和 GitHub Actions 现在都以 `docs/` 作为最终发布目录
 
 ---
 

@@ -15,7 +15,7 @@ fi
 
 echo "✅ 构建验证通过。"
 
-# 2. 提交并推送源码，由 GitHub Actions 自动部署 out/
+# 2. 提交并推送源码，由 GitHub Actions 自动部署 docs/
 COMMIT_MSG=${1:-"update site"}
 echo "📝 提交更改: $COMMIT_MSG"
 
@@ -24,4 +24,4 @@ git commit -m "$COMMIT_MSG"
 git push origin master
 
 echo "🎉 已推送到 master。"
-echo "🌐 GitHub Actions 会自动构建并发布最新的 out/ 到 GitHub Pages。"
+echo "🌐 GitHub Actions 会自动构建，并发布最新生成的 docs/ 到 GitHub Pages。"
