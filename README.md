@@ -55,7 +55,19 @@ tags: ['标签1', '标签2']
 
 ## 🚀 部署
 
-项目配置了 GitHub Actions 自动部署到 GitHub Pages。推送到 master 分支即可自动部署。
+项目使用 GitHub Actions 自动部署到 GitHub Pages。
+
+部署流程：
+
+1. 修改 `src/`、`posts/` 等源码内容
+2. 本地执行 `npm run build` 验证静态导出
+3. 推送到 `master`
+4. GitHub Actions 自动构建，并将生成的 `out/` 发布到 GitHub Pages
+
+注意：
+
+- 不需要再手动把 `out/` 复制到 `docs/`
+- 如果页面内容没有变化，优先检查 Actions 是否仍在发布 `docs/` 而不是 `out/`
 
 ---
 
